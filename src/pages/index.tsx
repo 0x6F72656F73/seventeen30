@@ -1,5 +1,4 @@
-import Image from 'next/image'
-
+import WorkoutForm from '@/components/WorkoutForm'
 import Footer from '@/components/Footer'
 
 export default function Home() {
@@ -17,11 +16,12 @@ export default function Home() {
       </div>
 
       <div className='mt-10'>
-        <div className='text-center text-9xl hollow-text-2'>
+        <div className='text-center text-9xl hollow-text-2'> {/*make text larger*/}
           6 STEPS
         </div>
       </div>
 
+      <WorkoutForm />
 
       <div className="py-10 px-24 bg-gold">
         <Footer />

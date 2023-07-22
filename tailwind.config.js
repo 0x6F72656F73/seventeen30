@@ -15,6 +15,10 @@ module.exports = {
       colors: {
         'bright-green': '#10E62C',
         'bright-pink': '#D90368',
+        'bright-orange': '#FF4D00',
+        'bright-blue': '#5CE1E6',
+        'bright-yellow': '#FFE347',
+        'bright-blue-2': '#004AAD',
       },
     },
 
