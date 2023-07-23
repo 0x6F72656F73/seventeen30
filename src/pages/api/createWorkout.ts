@@ -62,24 +62,40 @@ export default async function handler(
 
   const workoutDays = json.workout_days;
 
+  console.log(workoutDays);
 
   res.status(200).json({ workoutDays, usage: completion.data.usage });
+
+  //   const allData = [];
+  //   for (const day in workoutDays) {
+  //       console.log(`Day: ${day}`);
+        
+  //       // Loop through the exercises of each day
+  //       for (const exercise of workoutDays[day].exercises) {
+  //         const exerciseName = exercise['exercise name'];
+  //         console.log(exerciseName);
+  //         const response = await fetch(`https://api.api-ninjas.com/v1/exercises?offset=9&name=${exerciseName}`, {
+  //           method: 'GET',
+  //           headers: {
+  //             'Content-Type': 'application/json',
+  //             'X-Api-Key': process.env.API_NINJAS_API_KEY,
+  //           },
+  //         });
+
+  //         const data = await response.json();
+  //         console.log(data);
+  //         allData.push(data);
+  //       }
+
+  //       console.log(allData);
+        
+  //       console.log(); // Add an empty line between days for readability
+  //     }
+
+  // res.status(200).json({ workoutDays, usage: completion.data.usage, fitnessData: allData });
+
+
 }
-
-
-  // const response = await fetch('https://api.api-ninjas.com/v1/exercises?type=strength', {
-  //   method: 'GET',
-  //   headers: {
-  //     'Content-Type': 'application/json',
-  //     'X-Api-Key': process.env.API_NINJAS_API_KEY,
-  //   },
-  // });
-
-  // const data = await response.json();
-  // console.log(data);
-  // res.status(200).json({ result: data });
-
-// }
 
 // .000602
 

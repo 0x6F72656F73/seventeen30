@@ -150,7 +150,7 @@ const WorkoutForm = () => {
         <Section
           title="TYPE"
           color="bright-yellow"
-          fields={['Cardio', 'Weight Training', 'Calisthenics']}
+          fields={['Cardio', 'Strength', 'Streching']}
           onFieldValueChange={handleFieldValueChange}
         />
         <Section

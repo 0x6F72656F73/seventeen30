@@ -1,14 +1,12 @@
 const formData = {
-    span: '7 Day Plan',
+    span: '1 Day Plan',
     amount: '3 Workouts',
     level: 'Beginner',
-    duration: '30 Minutes',
-    type: 'Weight Training',
+    duration: '15 Minutes',
+    type: 'Strength',
     sport: 'Basketball'
 }
 
-
-// call the api at :3000/api/getWorkout
 
 async function testApi() {
     const response = await fetch('http://localhost:3000/api/createWorkout', {
@@ -19,20 +17,22 @@ async function testApi() {
         body: JSON.stringify({ formData }),
     })
     const data = await response.json();
-    console.log(data.usage);``
-    const days = data.workoutDays;
-    console.log(days);
-    console.log(typeof(days));
-    for (const day in days) {
-        console.log(`Day: ${day}`);
+    console.log(data);
+    const fitness = data.fitnessData;
+    console.log(fitness);
+    // const days = data.workoutDays;
+    // console.log(days);
+
+    // for (const day in days) {
+    //     console.log(`Day: ${day}`);
         
-        // Loop through the exercises of each day
-        for (const exercise of days[day].exercises) {
-          console.log(exercise);
-        }
+    //     // Loop through the exercises of each day
+    //     for (const exercise of days[day].exercises) {
+    //       console.log(exercise);
+    //     }
         
-        console.log(); // Add an empty line between days for readability
-      }
+    //     console.log(); // Add an empty line between days for readability
+    //   }
 
 }
 
