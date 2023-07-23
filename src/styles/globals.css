@@ -35,5 +35,5 @@ body {
 .hollow-text-3 {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 5px;
-  -webkit-text-stroke-color: #737373;
+  -webkit-text-stroke-color: #fff;
 }

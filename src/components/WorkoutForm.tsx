@@ -25,19 +25,19 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
   };
 
   const colorVariants: IColorVariants = {
-    'bright-pink': ['bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['bg-bright-green', 'border-bright-green', 'from-bright-green'],
-    'bright-orange': ['bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
-    'bright-blue': ['bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
-    'bright-yellow': ['bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
-    'bright-blue-2': ['bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
+    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
+    'bright-green': ['#10E62C'  ,'bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
+    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
+    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
+    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
   };
 
   function getColorClassNames(color: string): string[] {
     if (colorVariants.hasOwnProperty(color)) {
       return colorVariants[color];
     } else {
-      return ['bg-bright-pink', 'border-bright-pink'];
+      throw new Error(`Color ${color} is not defined in colorVariants`);
     }
   };
   
@@ -53,7 +53,7 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
 
   return (
       <div className='text-center text-white font-bold'>
-        <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[0]} text-3xl`}>
+        <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-3xl`}>
           {title}
         </div>
         <div className="w-[50vh] h-[10vh] my-4 text-xl">
@@ -61,10 +61,10 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
           <motion.div
             key={field}
             onClick={() => handleFieldValueChange(field)}
-            className={`cursor-pointer mb-2 border-8 ${getColorClassNames(color)[1]}`}
-            whileHover={{ scale: 1.2, backgroundColor: "rgb(234 179 8)", transition: { duration: .5 } }}
+            className={`cursor-pointer mb-2 border-8 ${getColorClassNames(color)[2]}`}
+            whileHover={{ scale: 1.2, backgroundColor: getColorClassNames(color)[0], transition: { duration: .5 } }}
           >
-            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r ${getColorClassNames(color)[2]}` : ''}`}>
+            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r ${getColorClassNames(color)[3]}` : ''}`}>
 
               {field}
             </div>
@@ -160,13 +160,15 @@ const WorkoutForm = () => {
           onFieldValueChange={handleFieldValueChange}
         />
       </div>
-      <button onClick={handleSubmit} className="flex items-center mt-[30vh] mx-auto">
-      <motion.div whileTap={{ scale: 0.9 }}>
-        <div className="text-9xl hollow-text-3 text-center"> 
-          DONE
-        </div>
-      </motion.div>
-      </button>
+      <motion.div
+            onClick={() => handleSubmit}
+            className={`flex items-center mt-[30vh] mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
+            whileHover={{ scale: 1.2, backgroundColor: "rgb(120, 81, 169)", transition: { duration: .5 } }}
+          >
+            <div className="text-9xl hollow-text-3 text-center"> 
+              DONE
+            </div>
+          </motion.div>
     </div>
   );
 };
