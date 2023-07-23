@@ -25,12 +25,12 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
   };
 
   const colorVariants: IColorVariants = {
-    'bright-pink': ['bg-bright-pink', 'border-bright-pink'],
-    'bright-green': ['bg-bright-green', 'border-bright-green'],
-    'bright-orange': ['bg-bright-orange', 'border-bright-orange'],
-    'bright-blue': ['bg-bright-blue', 'border-bright-blue'],
-    'bright-yellow': ['bg-bright-yellow', 'border-bright-yellow'],
-    'bright-blue-2': ['bg-bright-blue-2', 'border-bright-blue-2'],
+    'bright-pink': ['bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
+    'bright-green': ['bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-orange': ['bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
+    'bright-blue': ['bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
+    'bright-yellow': ['bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
+    'bright-blue-2': ['bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
   };
 
   function getColorClassNames(color: string): string[] {
@@ -40,6 +40,15 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
       return ['bg-bright-pink', 'border-bright-pink'];
     }
   };
+  
+  // const getClassName = (isSelected, field, color) => {
+  //   if (isSelected) {
+  //     console.log(isSelected, field, color);
+  //     return `p-4 bg-gradient-to-r`;
+  //   } else {
+  //     return `p-2`;
+  //   }
+  // };
 
 
   return (
@@ -48,29 +57,20 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
           {title}
         </div>
         <div className="w-[50vh] h-[10vh] my-4 text-xl">
-          {fields.map((field) => (
-            <motion.div
-              key={field}
-              onClick={() => handleFieldValueChange(field)}
-              className={`cursor-pointer p-2 mb-2 border-8 ${getColorClassNames(color)[1]}`}
-              whileHover={{ scale: 1.1 }} // Animation when hovering over the field
-              whileTap={{ scale: 0.9 }} // Animation when the field is clicked
-              // animate={selectedField === field ? { x:100 } : {}} // Animation when a field is selected
-              transition={selectedField === field ? { ease: "linear",
-              duration: 2,
-              x: { duration: 1 }} : {}}
-            >
+        {fields.map((field) => (
+          <motion.div
+            key={field}
+            onClick={() => handleFieldValueChange(field)}
+            className={`cursor-pointer mb-2 border-8 ${getColorClassNames(color)[1]}`}
+            whileHover={{ scale: 1.2, backgroundColor: "rgb(234 179 8)", transition: { duration: .5 } }}
+          >
+            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r ${getColorClassNames(color)[2]}` : ''}`}>
+
               {field}
-            </motion.div>
-            // <div
-            //   key={field}
-            //   onClick={() => handleFieldValueChange(field)}
-            //   className={`cursor-pointer p-2 mb-2 border-8 ${getColorClassNames(color)[1]}`}
-            // >
-            //   {field}
-            // </div>
-          ))}
-        </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
       </div>
   );
 };
@@ -150,7 +150,7 @@ const WorkoutForm = () => {
         <Section
           title="TYPE"
           color="bright-yellow"
-          fields={['Cardio', 'Strength', 'Streching']}
+          fields={['Cardio', 'Strength', 'Stretching']}
           onFieldValueChange={handleFieldValueChange}
         />
         <Section
