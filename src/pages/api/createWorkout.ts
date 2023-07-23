@@ -13,6 +13,7 @@ export default async function handler(
 ) {
 
   const { formData } = req.body;
+  console.log(formData);
 
   const completion = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

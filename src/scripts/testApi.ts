@@ -11,7 +11,7 @@ const formData = {
 // call the api at :3000/api/getWorkout
 
 async function testApi() {
-    const response = await fetch('http://localhost:3000/api/getWorkout', {
+    const response = await fetch('http://localhost:3000/api/createWorkout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

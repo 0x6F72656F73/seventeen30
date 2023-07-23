@@ -49,19 +49,19 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
         </div>
         <div className="w-[50vh] h-[10vh] my-4 text-xl">
           {fields.map((field) => (
-             <motion.div
-            key={field}
-            onClick={() => handleFieldValueChange(field)}
-            className={`cursor-pointer p-2 mb-2 border-8 ${getColorClassNames(color)[1]}`}
-            whileHover={{ scale: 1.1 }} // Animation when hovering over the field
-            whileTap={{ scale: 0.9 }} // Animation when the field is clicked
-            // animate={selectedField === field ? { x:100 } : {}} // Animation when a field is selected
-            transition={selectedField === field ? { ease: "linear",
-            duration: 2,
-            x: { duration: 1 }} : {}}
-           >
-             {field}
-           </motion.div>
+            <motion.div
+              key={field}
+              onClick={() => handleFieldValueChange(field)}
+              className={`cursor-pointer p-2 mb-2 border-8 ${getColorClassNames(color)[1]}`}
+              whileHover={{ scale: 1.1 }} // Animation when hovering over the field
+              whileTap={{ scale: 0.9 }} // Animation when the field is clicked
+              // animate={selectedField === field ? { x:100 } : {}} // Animation when a field is selected
+              transition={selectedField === field ? { ease: "linear",
+              duration: 2,
+              x: { duration: 1 }} : {}}
+            >
+              {field}
+            </motion.div>
             // <div
             //   key={field}
             //   onClick={() => handleFieldValueChange(field)}
@@ -92,10 +92,32 @@ const WorkoutForm = () => {
     }));
   };
 
-  const handleSubmit = () => {
-    // Here, you can use the formData to send the data to your server or API endpoint.
-    // Replace 'your-api-endpoint' with the actual endpoint where you want to send the data.
-    console.log(formData); // Example: { time: '7 day plan', level: 'beginner' }
+  const handleSubmit = async () => {
+    console.log(formData);
+      try {
+          // Submit form data to API
+          const response = await fetch("/api/createWorkout", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({formData}),
+          });
+  
+          // Handle API response
+          const data = await response.json();
+          console.log(data);
+          setFormData({ 
+            span: '',
+            amount: '',
+            level: '',
+            duration: '',
+            type: '',
+            sport: '',
+          });
+
+    } catch (error) {
+        console.error(error);
+
+    };
   };
 
   return (
