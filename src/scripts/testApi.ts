@@ -19,7 +19,7 @@ async function testApi() {
             body: JSON.stringify({formData}),
         })
 
-        const reader = response.body.pipeThrough(new TextDecoderStream()).getReader();
+        const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
         let allData = '';
         while (true) {
             const {value, done} = await reader.read();
