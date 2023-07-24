@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import { Anton, Libre_Baskerville } from 'next/font/google'
-import {IColorVariants} from '@/types/common'
+import {IColorVariants, IExerciseList} from '@/types/common'
 import { motion } from 'framer-motion';
 
 const libreBaskerville = Libre_Baskerville({ weight: '400', subsets: ['latin'] })
-
 
 
 
@@ -26,7 +25,7 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
 
   const colorVariants: IColorVariants = {
     'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['#10E62C'  ,'bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
     'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
     'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
     'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
@@ -74,8 +73,78 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
       </div>
   );
 };
+interface WorkoutFormProps {
+  AIData: IExerciseList | undefined;
+  setAIData: (data: IExerciseList) => void;
+}
 
-const WorkoutForm = () => {
+
+// const exersices: IExerciseList = {
+//   "Day 1": [
+//     {
+//       "name": "Squats",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Bench Press",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Lat Pulldowns",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     }
+//   ],
+//   "Day 2": [
+//     {
+//       "name": "Deadlifts",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Shoulder Press",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Dumbbell Rows",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     }
+//   ],
+//   "Day 3": [
+//     {
+//       "name": "Lunges",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Tricep Dips",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     },
+//     {
+//       "name": "Bicep Curls",
+//       "reps": 10,
+//       "sets": 3,
+//       "rest": 60
+//     }
+//   ]
+// }
+
+const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
+  
+
   const [formData, setFormData] = useState({
     span: '',
     amount: '',
@@ -93,6 +162,7 @@ const WorkoutForm = () => {
   };
 
   const handleSubmit = async () => {
+    console.log("hello")
     console.log(formData);
       try {
           // Submit form data to API
@@ -105,6 +175,8 @@ const WorkoutForm = () => {
           // Handle API response
           const data = await response.json();
           console.log(data);
+          setAIData(data);
+
           setFormData({ 
             span: '',
             amount: '',
@@ -160,15 +232,15 @@ const WorkoutForm = () => {
           onFieldValueChange={handleFieldValueChange}
         />
       </div>
-      <motion.div
-            onClick={() => handleSubmit}
+      <motion.button
             className={`flex items-center mt-[30vh] mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
+            onClick={() => handleSubmit()}
             whileHover={{ scale: 1.2, backgroundColor: "rgb(120, 81, 169)", transition: { duration: .5 } }}
           >
             <div className="text-9xl hollow-text-3 text-center"> 
               DONE
             </div>
-          </motion.div>
+          </motion.button>
     </div>
   );
 };

@@ -35,22 +35,20 @@ export default async function handler(
       Generate a json output which has ${formData.span}-day entries. Do not output anything else. Here is the json structure:
       
       {
-        "workout_days": {
-          "day1": {
-            "exercises": [
-              {
-                "exercise name": string,
-                "reps": int,
-                "sets": int,
-                "rest": int
-              },
-            ],
+        "Day 1": 
+        [
+          {
+            "name": string,
+            "reps": int,
+            "sets": int,
+            "rest": int
           },
-        }
-      }`
+        ],
+      }
+      `
       }
     ],
-    temperature: 0.2,
+    temperature: 0.7,
     top_p: 1,
     frequency_penalty: 0,
     presence_penalty: 0,
@@ -60,11 +58,12 @@ export default async function handler(
   console.log(jsonString);
   const json = JSON.parse(jsonString);
 
-  const workoutDays = json.workout_days;
+  // const workoutDays = json.workout_days;
 
-  console.log(workoutDays);
+  // console.log(workoutDays);
+  res.status(200).json(json);
 
-  res.status(200).json({ workoutDays, usage: completion.data.usage });
+  // res.status(200).json({ workoutDays, usage: completion.data.usage });
 
   //   const allData = [];
   //   for (const day in workoutDays) {

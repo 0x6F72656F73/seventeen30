@@ -1,5 +1,5 @@
 const formData = {
-    span: '1 Day Plan',
+    span: '3 Day Plan',
     amount: '3 Workouts',
     level: 'Beginner',
     duration: '15 Minutes',

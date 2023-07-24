@@ -1,7 +1,14 @@
+import { useState } from 'react'
+
 import WorkoutForm from '@/components/WorkoutForm'
+import Calendar from '@/components/Calendar'
 import Footer from '@/components/Footer'
 
+import { IExerciseList } from '@/types/common'
+
 export default function Home() {
+  const [AIData, setAIData] = useState<IExerciseList>();
+
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center">
@@ -21,7 +28,9 @@ export default function Home() {
         </div>
       </div>
 
-      <WorkoutForm />
+      <WorkoutForm AIData={AIData} setAIData={setAIData} />
+
+      {AIData && <Calendar AIData={AIData} />}
 
       <div className="py-10 px-24 bg-gold">
         <Footer />
