@@ -1,27 +1,33 @@
 
 import type { NextApiRequest, NextApiResponse } from 'next';
-import { Configuration, OpenAIApi } from 'openai';
+import { Configuration, OpenAIApi } from "openai-edge";
+import { OpenAIStream, StreamingTextResponse } from 'ai';
+import { NextRequest, NextResponse } from 'next/server';
+
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
 
-  const { formData } = req.body;
+
+
+
+
+
+const handler = async (req: NextRequest) => {
+  const { formData } = await req.json();
   console.log(formData);
 
-  const completion = await openai.createChatCompletion({
+  // try {
+  const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',
     messages: [
       { role: "system", content: "You are a helpful assistant." },
       { role: "user", content: `
       You are building a personalized workout plan based on user preferences. The user has provided the following inputs:
-
+    
       1. Span: ${formData.span}
       2. Amount: ${formData.amount}
       3. Level: ${formData.level}
@@ -29,9 +35,9 @@ export default async function handler(
       5. Type: ${formData.type}
       6. Sport: ${formData.sport}
       
-
+    
       Design a gym workout plan that fits the user's preferences and requirements. Take into account the span of the plan, the number of workouts per week, the user's fitness level, the duration of each workout, the type of exercises preferred, and the sport of interest. Each exercise should be something done at the gym.
-
+    
       Generate a json output which has ${formData.span}-day entries. Do not output anything else. Here is the json structure:
       
       {
@@ -53,19 +59,58 @@ export default async function handler(
     frequency_penalty: 0,
     presence_penalty: 0,
     max_tokens: 1500,
+    stream: true,
   });
-  const jsonString = completion.data.choices[0].message?.content;
-  console.log(jsonString);
-  if (jsonString !== undefined) {
-    const json = JSON.parse(jsonString);
-    // Now you can work with the parsed JSON data
-    console.log(json);
-    res.status(200).json(json);
-  } else {
-    // Handle the case where jsonString is undefined
-    console.log("jsonString is undefined. Cannot parse JSON.");
-    res.status(400).json({ error: "jsonString is undefined. Cannot parse JSON." });
-  }
+
+  const stream = OpenAIStream(response);
+  // Respond with the stream
+  return new StreamingTextResponse(stream);
+
+  // return new Response(completion.body, {
+  //   headers: {
+  //     "Access-Control-Allow-Origin": "*",
+  //     "Content-Type": "text/event-stream;charset=utf-8",
+  //     "Cache-Control": "no-cache, no-transform",
+  //     "X-Accel-Buffering": "no",
+  //   },
+  // })
+
+  // const jsonString = completion.data.choices[0].message?.content;
+  // console.log(jsonString);
+
+  // if (jsonString !== undefined) {
+  //   const json = JSON.parse(jsonString);
+  //   // Now you can work with the parsed JSON data
+  //   console.log(json);
+  //   res.status(200).json(json);
+  // } else {
+  //   // Handle the case where jsonString is undefined
+  //   console.log("jsonString is undefined. Cannot parse JSON.");
+  //   res.status(400).json({ error: "jsonString is undefined. Cannot parse JSON." });
+  // }
+  // }  catch (error: any) {
+  //   console.error(error)
+
+  //   return new Response(JSON.stringify(error), {
+  //     status: 400,
+  //     headers: {
+  //       "content-type": "application/json",
+  //     },
+  //   })
+  // }
+}
+
+export const config = {
+  runtime: "edge",
+};
+
+export default handler
+
+
+
+
+
+
 
   // const workoutDays = json.workout_days;
 
@@ -103,7 +148,7 @@ export default async function handler(
   // res.status(200).json({ workoutDays, usage: completion.data.usage, fitnessData: allData });
 
 
-}
+
 
 // .000602
 

@@ -173,8 +173,21 @@ const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
           });
   
           // Handle API response
-          const data = await response.json();
+          // const data = await response.json();
+          const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
+          let allData = '';
+          while (true) {
+              const {value, done} = await reader.read();
+              console.log(value);
+              if (done) break;
+              allData += value;
+          }
+          
+          console.log('Response fully received');
+          const data = JSON.parse(allData);
           console.log(data);
+          // console.log(data);
+        
           setAIData(data);
 
           setFormData({ 
