@@ -56,12 +56,21 @@ export default async function handler(
   });
   const jsonString = completion.data.choices[0].message?.content;
   console.log(jsonString);
-  const json = JSON.parse(jsonString);
+  if (jsonString !== undefined) {
+    const json = JSON.parse(jsonString);
+    // Now you can work with the parsed JSON data
+    console.log(json);
+    res.status(200).json(json);
+  } else {
+    // Handle the case where jsonString is undefined
+    console.log("jsonString is undefined. Cannot parse JSON.");
+    res.status(400).json({ error: "jsonString is undefined. Cannot parse JSON." });
+  }
 
   // const workoutDays = json.workout_days;
 
   // console.log(workoutDays);
-  res.status(200).json(json);
+
 
   // res.status(200).json({ workoutDays, usage: completion.data.usage });
 
