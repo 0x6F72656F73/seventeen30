@@ -1,15 +1,14 @@
 import { useState, useContext, useEffect } from 'react';
-import { Anton, Libre_Baskerville } from 'next/font/google'
-import {IColorVariants, IExerciseList} from '@/types/common'
+import {IColorVariants} from '@/types/common'
 import { motion } from 'framer-motion';
 
 import AIDataContext from '@/utils/AIDataContext';
-
+import { HeightConverter, WeightConverter } from '@/utils';
 import { libreBaskerville, anton } from '@/utils/fonts';
 
 
 
-interface SectionProps {
+interface DropdownSectionProps {
   title: string;
   color: string;
   fields: string[];
@@ -17,7 +16,7 @@ interface SectionProps {
 }
 
 
-const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => {
+const DropdownSection = ({ title, color, fields, onFieldValueChange }: DropdownSectionProps) => {
   const [selectedField, setSelectedField] = useState('');
 
   const handleFieldValueChange = (value: string) => {
@@ -66,6 +65,65 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
   );
 };
 
+
+interface SliderSectionProps {
+  title: string;
+  color: string;
+  min: string;
+  max: string;
+  onValueChange: (title: string, value: string) => void;
+}
+
+const SliderSection = ({ title, color, min, max, onValueChange }: SliderSectionProps) => {
+  const [selectedValue, setSelectedValue] = useState(((parseInt(min) + parseInt(max)) / 2).toString());
+
+  const handleValueChange = (value: string) => {
+    setSelectedValue(value);
+    onValueChange(title, value);
+  };
+
+  const colorVariants: Record<string, string[]> = {
+    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
+    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
+    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
+    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
+    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
+  };
+
+  function getColorClassNames(color: string): string[] {
+    if (colorVariants.hasOwnProperty(color)) {
+      return colorVariants[color];
+    } else {
+      throw new Error(`Color ${color} is not defined in colorVariants`);
+    }
+  };
+
+  return (
+    <div className='text-center text-white font-bold'>
+      <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-3xl`}>
+        {title}
+      </div>
+      <div className="w-[50vh] h-[10vh] my-4 text-xl">
+        <input
+          type="range"
+          min={min}
+          max={max}
+          step="1"
+          value={selectedValue}
+          onChange={(event) => handleValueChange(event.target.value)}
+          className={`w-full h-4 ${getColorClassNames(color)[2]}`}
+          style={{ background: `linear-gradient(to right, ${colorVariants[color][0]}, ${colorVariants[color][3]})` }}
+        />
+        <div className="flex justify-center">
+          <div className="w-20 text-center font-bold">
+            {title === "HEIGHT" ? HeightConverter(selectedValue) : WeightConverter(selectedValue)}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 
 function parseStreamedJSON(streamedData: string) {
@@ -159,43 +217,45 @@ const WorkoutForm = () => {
   };
 
   return (
-    <div className="flex flex-col">
-      <div className={`grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh] mt-[30vh] ${libreBaskerville.className}`}>
-        <Section
+    <div className="flex flex-col mt-[20vh]">
+      <div className={`grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh] ${libreBaskerville.className}`}>
+        <DropdownSection
           title="SPAN"
           color="bright-pink"
           fields={['1 Day Plan', '3 Day Plan', '30 Day Plan']}
           onFieldValueChange={handleFieldValueChange}
         />
-        <Section
-          title="AMOUNT"
-          color="bright-green"
-          fields={['3 Workouts', '4 Workouts', '5 Workouts']}
-          onFieldValueChange={handleFieldValueChange}
-        />
-        <Section
+        <DropdownSection
           title="LEVEL"
-          color="bright-orange"
+          color="bright-green"
           fields={['Beginner', 'Intermediate','Advanced']}
           onFieldValueChange={handleFieldValueChange}
         />
-        <Section
+        <DropdownSection
           title="DURATION"
           color="bright-blue"
           fields={['15 Minutes', '30 Minutes', '60 Minutes']}
           onFieldValueChange={handleFieldValueChange}
         />
-        <Section
+        <DropdownSection
           title="TYPE"
-          color="bright-yellow"
-          fields={['Cardio', 'Strength', 'Stretching']}
+          color="bright-orange"
+          fields={['Cardio', 'Weight Training', 'Calisthenics']}
           onFieldValueChange={handleFieldValueChange}
         />
-        <Section
-          title="SPORT"
+        <SliderSection
+          title="HEIGHT"
+          color="bright-yellow"
+          min={'48'}
+          max={'84'}
+          onValueChange={handleFieldValueChange}
+        />
+        <SliderSection
+          title="WEIGHT"
           color="bright-blue-2"
-          fields={['Basketball', 'Soccer', 'Football']}
-          onFieldValueChange={handleFieldValueChange}
+          min={'100'}
+          max={'300'}
+          onValueChange={handleFieldValueChange}
         />
       </div>
       <motion.button
@@ -203,7 +263,7 @@ const WorkoutForm = () => {
             onClick={() => handleSubmit()}
             whileHover={{ scale: 1.2, backgroundColor: "rgb(120, 81, 169)", transition: { duration: .5 } }}
           >
-            <div className="text-9xl hollow-text-3 text-center"> 
+            <div className={`text-9xl hollow-text-3 text-center ${anton.className}`}> 
               DONE
             </div>
           </motion.button>
