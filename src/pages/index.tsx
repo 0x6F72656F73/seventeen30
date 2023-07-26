@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Image from 'next/image'
 
 import WorkoutForm from '@/components/WorkoutForm'
-import Calendar from '@/components/Calendar'
+import Schedule from '@/components/Schedule'
 import Footer from '@/components/Footer'
 import AIDataContext from '@/utils/AIDataContext';
 
@@ -33,7 +33,7 @@ export default function Home() {
       <AIDataContext.Provider value={{ AIData, setAIData }}>
         <WorkoutForm  />
 
-        {AIData && <Calendar />}
+        { <Schedule />}
       </AIDataContext.Provider>
 
     </main>

@@ -34,22 +34,19 @@ const Day = ({dayNumber, workouts}: DayProps) => {
 }
 
 
-const Calendar = () => {
+const Schedule = () => {
     const { AIData } = useContext(AIDataContext);
 
-    if (!AIData) {
-        return (
-            <div className="flex flex-col mt-[50vh]">
-                Loading...
-            </div>
-        )
-    }
+
+    if (AIData === undefined || Object.keys(AIData).length === 0) {
+        return;
+    } 
 
     return (
         <div>
             <div className="flex flex-col mt-[50vh]">
                 <div className={`text-center text-9xl hollow-text-2 ${anton.className}`}>
-                    CALENDAR
+                    SCHEDULE
                 </div>
                 <div className="grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh]  mt-[20vh]">
                     {
@@ -64,4 +61,4 @@ const Calendar = () => {
     );
 };
 
-export default Calendar;
+export default Schedule;
