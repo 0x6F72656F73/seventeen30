@@ -7,9 +7,8 @@ export interface IWorkout {
     reps: number;
     sets: number;
     rest: number;
-  }
+}
   
   export interface IExerciseList {
     [dayNumber: string]: IWorkout[];
   }
-  

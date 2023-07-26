@@ -1,10 +1,14 @@
 const formData = {
-    span: '3 Day Plan',
-    amount: '1 Workouts',
+    span: '2 Day Plan',
     level: 'Beginner',
-    duration: '15 Minutes',
-    type: 'Cardio',
-    sport: 'Basketball'
+    duration: '30 Minutes',
+    type: 'Strength Training',
+    sport: 'Basketball',
+    bmi: '15%',
+}
+
+
+const grabDay = (day: string) => {
 }
 
 
@@ -23,8 +27,16 @@ async function testApi() {
         let allData = '';
         while (true) {
             const {value, done} = await reader.read();
+            // console.log(value, value?.length);
             if (done) break;
             allData += value;
+            // if (value.startsWith("DAY")) {
+            //     console.log("NEW DAY",value);
+            // }
+            if (value.includes("]")) {
+                console.log("NEW DAY");
+                console.log(allData);
+            }
         }
         
         console.log('Response fully received');

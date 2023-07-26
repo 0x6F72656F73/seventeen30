@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { Anton, Libre_Baskerville } from 'next/font/google'
 import {IColorVariants, IExerciseList} from '@/types/common'
 import { motion } from 'framer-motion';
+
+import AIDataContext from '@/utils/AIDataContext';
 
 const libreBaskerville = Libre_Baskerville({ weight: '400', subsets: ['latin'] })
 
@@ -39,16 +41,6 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
       throw new Error(`Color ${color} is not defined in colorVariants`);
     }
   };
-  
-  // const getClassName = (isSelected, field, color) => {
-  //   if (isSelected) {
-  //     console.log(isSelected, field, color);
-  //     return `p-4 bg-gradient-to-r`;
-  //   } else {
-  //     return `p-2`;
-  //   }
-  // };
-
 
   return (
       <div className='text-center text-white font-bold'>
@@ -73,78 +65,32 @@ const Section = ({ title, color, fields, onFieldValueChange }: SectionProps) => 
       </div>
   );
 };
-interface WorkoutFormProps {
-  AIData: IExerciseList | undefined;
-  setAIData: (data: IExerciseList) => void;
+
+
+
+function parseStreamedJSON(streamedData: string) {
+  let parsedData = null;
+  try {
+    // Try to parse the JSON data as a whole
+    parsedData = JSON.parse(streamedData);
+  } catch (error) {
+    // If the JSON parsing fails, handle partial parsing
+    const lastBracketIndex = streamedData.lastIndexOf("]");
+    if (lastBracketIndex !== -1) {
+      const partialJSON = streamedData.slice(0, lastBracketIndex + 1);
+      parsedData = JSON.parse(partialJSON);
+    }
+  }
+  return parsedData;
 }
 
+// const parseStreamedJSON = (jsonString: string) => {
+//   const json = jsonString.replace(/\|/g, '');
+//   return JSON.parse(json);
+// };
 
-// const exersices: IExerciseList = {
-//   "Day 1": [
-//     {
-//       "name": "Squats",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Bench Press",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Lat Pulldowns",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     }
-//   ],
-//   "Day 2": [
-//     {
-//       "name": "Deadlifts",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Shoulder Press",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Dumbbell Rows",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     }
-//   ],
-//   "Day 3": [
-//     {
-//       "name": "Lunges",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Tricep Dips",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     },
-//     {
-//       "name": "Bicep Curls",
-//       "reps": 10,
-//       "sets": 3,
-//       "rest": 60
-//     }
-//   ]
-// }
 
-const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
-  
-
+const WorkoutForm = () => {
   const [formData, setFormData] = useState({
     span: '',
     amount: '',
@@ -161,9 +107,15 @@ const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
     }));
   };
 
+  const { setAIData, } = useContext(AIDataContext);
+  const [days, setDays] = useState<any[]>([]);
+
+  useEffect(() => {
+    let data: any = days;
+    setAIData(data);
+  }, [days, setAIData]);
+
   const handleSubmit = async () => {
-    console.log("hello")
-    console.log(formData);
       try {
           // Submit form data to API
           const response = await fetch("/api/createWorkout", {
@@ -173,22 +125,23 @@ const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
           });
   
           // Handle API response
-          // const data = await response.json();
           const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
           let allData = '';
+
           while (true) {
               const {value, done} = await reader.read();
-              console.log(value);
               if (done) break;
               allData += value;
+              if (value.includes(']')) {  
+                allData = allData.replace('|', '');
+
+                const parsed = parseStreamedJSON(allData);
+                setDays((prevDays) => [...prevDays, parsed]);
+
+                allData = '';
+
+              }
           }
-          
-          console.log('Response fully received');
-          const data = JSON.parse(allData);
-          console.log(data);
-          // console.log(data);
-        
-          setAIData(data);
 
           setFormData({ 
             span: '',
@@ -211,7 +164,7 @@ const WorkoutForm = ({AIData, setAIData}: WorkoutFormProps) => {
         <Section
           title="SPAN"
           color="bright-pink"
-          fields={['1 Day Plan', '7 Day Plan', '30 Day Plan']}
+          fields={['1 Day Plan', '3 Day Plan', '30 Day Plan']}
           onFieldValueChange={handleFieldValueChange}
         />
         <Section

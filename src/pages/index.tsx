@@ -3,6 +3,7 @@ import { useState } from 'react'
 import WorkoutForm from '@/components/WorkoutForm'
 import Calendar from '@/components/Calendar'
 import Footer from '@/components/Footer'
+import AIDataContext from '@/utils/AIDataContext';
 
 import { IExerciseList } from '@/types/common'
 
@@ -28,9 +29,11 @@ export default function Home() {
         </div>
       </div>
 
-      <WorkoutForm AIData={AIData} setAIData={setAIData} />
+      <AIDataContext.Provider value={{ AIData, setAIData }}>
+        <WorkoutForm  />
 
-      {AIData && <Calendar AIData={AIData} />}
+        {AIData && <Calendar />}
+      </AIDataContext.Provider>
 
       <div className="py-10 px-24 bg-gold">
         <Footer />

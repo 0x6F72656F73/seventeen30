@@ -1,3 +1,6 @@
+import { useContext } from "react";
+import AIDataContext from "@/utils/AIDataContext";
+
 import { IWorkout, IExerciseList } from "@/types/common";
 
 
@@ -8,7 +11,7 @@ const Workout = ({name, reps, sets, rest}: IWorkout) => {
                 {name}
                 </h1>
 
-            <h2>Reps X Sets: {reps}x{sets}</h2>
+            <h2>Sets x Reps: {sets}x{reps}</h2>
             
             <h3>Rest time: {rest}s</h3>
         </div>
@@ -31,15 +34,12 @@ const Day = ({dayNumber, workouts}: DayProps) => {
 }
 
 
-interface CalendarProps {
-    AIData: IExerciseList | undefined;
-  }
-const Calendar = ({AIData}: CalendarProps) => {
-
+const Calendar = () => {
+    const { AIData } = useContext(AIDataContext);
 
     if (!AIData) {
         return (
-            <div className="flex flex-col">
+            <div className="flex flex-col mt-[50vh]">
                 Loading...
             </div>
         )
@@ -54,7 +54,7 @@ const Calendar = ({AIData}: CalendarProps) => {
                 <div className="grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh]  mt-[20vh]">
                     {
                         Object.keys(AIData).map((dayNumber) => (
-                            <Day key={dayNumber} dayNumber={dayNumber} workouts={AIData[dayNumber]} />
+                            <Day key={dayNumber}  dayNumber={dayNumber} workouts={AIData[dayNumber]} />
                         ))
                         
                     }
