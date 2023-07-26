@@ -33,7 +33,7 @@ export default function Home() {
       <AIDataContext.Provider value={{ AIData, setAIData }}>
         <WorkoutForm  />
 
-        { <Schedule />}
+         <Schedule />
       </AIDataContext.Provider>
 
     </main>

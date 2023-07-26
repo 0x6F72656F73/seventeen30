@@ -169,50 +169,56 @@ const WorkoutForm = () => {
   const [days, setDays] = useState<any[]>([]);
 
   useEffect(() => {
-    let data: any = days;
-    setAIData(data);
+    setAIData(days as any);
   }, [days, setAIData]);
 
   const handleSubmit = async () => {
-      try {
-          // Submit form data to API
-          const response = await fetch("/api/createWorkout", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({formData}),
-          });
-  
-          // Handle API response
-          const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
-          let allData = '';
+    const spanLength = parseInt(formData.span); 
+      const initialDays = Array(spanLength).fill([]);
+      setDays(initialDays); 
+      
+    try {
+        const response = await fetch("/api/createWorkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({formData}),
+        });
 
-          while (true) {
-              const {value, done} = await reader.read();
-              if (done) break;
-              allData += value;
-              if (value.includes(']')) {  
-                allData = allData.replace('|', '');
+        const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
+        let allData = '';
 
-                const parsed = parseStreamedJSON(allData);
-                setDays((prevDays) => [...prevDays, parsed]);
+        let counter = -1;
 
-                allData = '';
+        while (true) {
+            const {value, done} = await reader.read();
+            if (done) break;
+            allData += value;
+            if (value.includes(']')) {  
+              allData = allData.replace('|', '');
 
-              }
-          }
+              const parsed = parseStreamedJSON(allData);
+              setDays((prevDays) => {
+                const updatedDays = [...prevDays];
+                updatedDays[counter] = parsed;
+                return updatedDays;
+              });
 
-          setFormData({ 
-            span: '',
-            amount: '',
-            level: '',
-            duration: '',
-            type: '',
-            sport: '',
-          });
+              allData = '';
+              counter++;
 
+            }
+        }
+
+        setFormData({ 
+          span: '',
+          amount: '',
+          level: '',
+          duration: '',
+          type: '',
+          sport: '',
+        });
     } catch (error) {
         console.error(error);
-
     };
   };
 
