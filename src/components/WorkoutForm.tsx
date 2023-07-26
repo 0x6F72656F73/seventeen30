@@ -25,12 +25,12 @@ const DropdownSection = ({ title, color, fields, onFieldValueChange }: DropdownS
   };
 
   const colorVariants: IColorVariants = {
-    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
-    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
-    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
-    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
-    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
+    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'via-bright-pink'],
+    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'via-bright-green'],
+    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'via-bright-orange'],
+    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'via-bright-blue'],
+    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'via-bright-yellow'],
+    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'via-bright-blue-2'],
   };
 
   function getColorClassNames(color: string): string[] {
@@ -54,7 +54,7 @@ const DropdownSection = ({ title, color, fields, onFieldValueChange }: DropdownS
             className={`cursor-pointer mb-2 border-8 ${getColorClassNames(color)[2]}`}
             whileHover={{ scale: 1.2, backgroundColor: getColorClassNames(color)[0], transition: { duration: .5 } }}
           >
-            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r ${getColorClassNames(color)[3]}` : ''}`}>
+            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r from-black ${getColorClassNames(color)[3]} to-black` : ''}`}>
 
               {field}
             </div>
