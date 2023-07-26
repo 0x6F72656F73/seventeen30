@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 const handler = async (req: NextRequest) => {
   const { formData } = await req.json();
-
+  console.log(formData);
   // try {
   const response = await openai.createChatCompletion({
     model: 'gpt-3.5-turbo',

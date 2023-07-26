@@ -9,6 +9,6 @@ export interface IWorkout {
     rest: number;
 }
   
-  export interface IExerciseList {
-    [dayNumber: string]: IWorkout[];
-  }
+export interface IExerciseList {
+  [dayNumber: string]: IWorkout[];
+}

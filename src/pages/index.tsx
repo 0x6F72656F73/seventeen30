@@ -18,7 +18,7 @@ export default function Home() {
         <Image src="/images/Hero.png" alt="Hero" priority={true} width="0" height="0" sizes="100vw" className="w-full h-auto"  placeholder="blur" blurDataURL="images/Hero.png"/>
 
         <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
-          <div className={` py-[5vh] hollow-text text-center text-5xl ${anton.className}`}>
+          <div className={`py-[5vh] hollow-text text-center text-6xl ${anton.className}`}>
             CREATE A PERSONALIZED WORKOUT PLAN WITH AI
           </div>
         </div>
