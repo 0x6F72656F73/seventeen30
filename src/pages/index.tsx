@@ -14,16 +14,16 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <Image src="/images/Hero.png" alt="Logo" width={1000} height={500} />
+        <Image src="/images/Hero.png" alt="Logo" width="0" height="0" sizes="100vw" className="w-full h-auto" priority={true} />
 
         <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
           <div className='py-[5vh] text-center text-5xl hollow-text'>
             CREATE A PERSONALIZED WORKOUT PLAN WITH AI
           </div>
-        I</div>
+        </div>
       </div>
 
-      <div className='mt-10'>
+      <div className='mt-48'>
         <div className='text-center text-9xl hollow-text-2'> {/*make text larger*/}
           7 STEPS
         </div>
