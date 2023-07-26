@@ -1,8 +1,9 @@
-import '@/styles/globals.css'
 import type { AppProps } from 'next/app'
+
 import { Anton } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/react';
 
+import '@/styles/globals.css'
 const anton = Anton({ weight: '400', subsets: ['latin'] })
 
 // import { AnimatePresence } from 'framer-motion';
