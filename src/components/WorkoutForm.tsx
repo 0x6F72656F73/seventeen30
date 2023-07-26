@@ -7,6 +7,10 @@ import { HeightConverter, WeightConverter } from '@/utils';
 import { libreBaskerville, anton } from '@/utils/fonts';
 
 
+const HEIGHT_WEIGHT_MIN_MAX = {
+  'HEIGHT': [48, 84],
+  'WEIGHT': [100, 300],
+};
 
 interface DropdownSectionProps {
   title: string;
@@ -129,6 +133,7 @@ const SliderSection = ({ title, color, min, max, onValueChange }: SliderSectionP
 function parseStreamedJSON(streamedData: string) {
   let parsedData = null;
   try {
+    console.log(streamedData);
     // Try to parse the JSON data as a whole
     parsedData = JSON.parse(streamedData);
   } catch (error) {
@@ -151,10 +156,11 @@ function parseStreamedJSON(streamedData: string) {
 const WorkoutForm = () => {
   const [formData, setFormData] = useState({
     span: '',
-    amount: '',
     level: '',
     duration: '',
     type: '',
+    height: ((HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1]) / 2).toString(),
+    weight: ((HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1]) / 2).toString(),
     sport: '',
   });
 
@@ -174,8 +180,8 @@ const WorkoutForm = () => {
 
   const handleSubmit = async () => {
     const spanLength = parseInt(formData.span); 
-      const initialDays = Array(spanLength).fill([]);
-      setDays(initialDays); 
+    const initialDays = Array(spanLength).fill([]);
+    setDays(initialDays); 
       
     try {
         const response = await fetch("/api/createWorkout", {
@@ -211,10 +217,11 @@ const WorkoutForm = () => {
 
         setFormData({ 
           span: '',
-          amount: '',
           level: '',
           duration: '',
           type: '',
+          height: '',
+          weight: '',
           sport: '',
         });
     } catch (error) {
@@ -252,15 +259,15 @@ const WorkoutForm = () => {
         <SliderSection
           title="HEIGHT"
           color="bright-yellow"
-          min={'48'}
-          max={'84'}
+          min={HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0].toString()}
+          max={HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1].toString()}
           onValueChange={handleFieldValueChange}
         />
         <SliderSection
           title="WEIGHT"
           color="bright-blue-2"
-          min={'100'}
-          max={'300'}
+          min={HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0].toString()}
+          max={HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1].toString()}
           onValueChange={handleFieldValueChange}
         />
       </div>
