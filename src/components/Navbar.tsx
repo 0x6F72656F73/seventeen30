@@ -1,8 +1,6 @@
 import Link from 'next/link';
 
-import { Libre_Baskerville } from 'next/font/google'
-
-const libreBaskerville = Libre_Baskerville({ weight: '400', subsets: ['latin'] })
+import { libreBaskerville } from '@/utils/fonts';
 
 const Header = () => {
     return (

@@ -2,7 +2,7 @@ import { useContext } from "react";
 import AIDataContext from "@/utils/AIDataContext";
 
 import { IWorkout, IExerciseList } from "@/types/common";
-
+import { anton } from "@/utils/fonts";
 
 const Workout = ({name, reps, sets, rest}: IWorkout) => {
     return (
@@ -48,8 +48,8 @@ const Calendar = () => {
     return (
         <div>
             <div className="flex flex-col mt-[50vh]">
-                <div className='text-center text-9xl hollow-text-2'>
-                    Calendar
+                <div className={`text-center text-9xl hollow-text-2 ${anton.className}`}>
+                    CALENDAR
                 </div>
                 <div className="grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh]  mt-[20vh]">
                     {

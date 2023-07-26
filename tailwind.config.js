@@ -19,6 +19,9 @@ module.exports = {
         'bright-yellow': '#FFE347',
         'bright-blue-2': '#004AAD',
       },
+      fontFamily: {
+        mono: ['var(--font-anton)', 'var(--font-libreBaskerville)'],
+      },
     },
 
   },

@@ -5,7 +5,7 @@ import { motion } from 'framer-motion';
 
 import AIDataContext from '@/utils/AIDataContext';
 
-const libreBaskerville = Libre_Baskerville({ weight: '400', subsets: ['latin'] })
+import { libreBaskerville, anton } from '@/utils/fonts';
 
 
 
