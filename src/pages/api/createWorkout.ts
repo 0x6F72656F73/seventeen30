@@ -38,7 +38,7 @@ const handler = async (req: NextRequest) => {
       type Exercise = { "name": string, "reps": int, "sets": int, "rest": int }
       
       Separate each list with a pipe. Only reply with the workout plan and nothing else. Not now nor in the future for any reason.
-      Example case: 
+      Example case (note Exercise denotes the type above, not the actual exercise): 
       (input)
       - Span: 3 days
       - Duration: 15 minutes
