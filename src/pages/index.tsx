@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import Image from 'next/image'
 
 import WorkoutForm from '@/components/WorkoutForm'
 import Calendar from '@/components/Calendar'
@@ -13,19 +14,18 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <h1 className='text-9xl text-bright-green'>S E V E N T E E N</h1>
-        <h1 className='text-9xl md:-mt-[8vh] lg:-mt-[4vh] text-bright-pink'>3 0</h1>
+        <Image src="/images/Hero.png" alt="Logo" width={1000} height={500} />
 
-        <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[8%]'>
+        <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
           <div className='py-[5vh] text-center text-5xl hollow-text'>
             CREATE A PERSONALIZED WORKOUT PLAN WITH AI
           </div>
-        </div>
+        I</div>
       </div>
 
       <div className='mt-10'>
         <div className='text-center text-9xl hollow-text-2'> {/*make text larger*/}
-          6 STEPS
+          7 STEPS
         </div>
       </div>
 
