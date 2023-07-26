@@ -35,9 +35,6 @@ export default function Home() {
         {AIData && <Calendar />}
       </AIDataContext.Provider>
 
-      <div className="py-10 px-24 bg-gold">
-        <Footer />
-      </div>
     </main>
   )
 }
