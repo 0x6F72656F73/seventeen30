@@ -1,4 +1,4 @@
-import NavBar from '@/components/NavBar';
+import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 
 interface LayoutProps {
@@ -8,7 +8,7 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
     return (
         <div>
-            <NavBar />
+            <Header />
             <main>
                 {children}
             </main>
