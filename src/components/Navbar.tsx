@@ -4,19 +4,19 @@ import { libreBaskerville } from '@/utils/fonts';
 
 const Header = () => {
     return (
-        <div className={` mt-10 text-4xl text-white ${libreBaskerville.className}`}>
+        <div className={`mt-10 text-5xl text-white ${libreBaskerville.className}`}>
             <div className="flex flex-row justify-around">
                 <div>
-                    <Link href="/">Home</Link>
+                    <Link href="/">HOME</Link>
                 </div>
                 <div>
-                    <Link href="/index">Index</Link>
+                    <Link href="/index">INDEX</Link>
                 </div>
                 <div>
-                    <Link href="/about">About Us</Link>
+                    <Link href="/about">ABOUT US</Link>
                 </div>
                 <div>
-                    <Link href="/more">More</Link>
+                    <Link href="/more">MORE</Link>
                 </div>
             </div>
         </div>

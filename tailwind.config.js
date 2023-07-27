@@ -23,6 +23,10 @@ module.exports = {
       fontFamily: {
         mono: ['var(--font-anton)', 'var(--font-libreBaskerville)'],
       },
+      fontSize: {
+        '10xl': '10rem',
+        '11xl': '11rem',
+      }
     },
 
   },
