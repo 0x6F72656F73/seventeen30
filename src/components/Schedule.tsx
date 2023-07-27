@@ -24,7 +24,6 @@ const Workout = ({name, reps, sets, rest}: IWorkout) => {
 const dotTransition: Transition = { duration: 0.75, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" };
 
 export const LoadingAnimation = () => {
-  console.log("LoadingAnimation");
   return (
       <div className="pt-20 w-full flex items-center justify-center">
       <motion.div
