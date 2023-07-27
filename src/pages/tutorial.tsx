@@ -1,4 +1,4 @@
-import { colorVariants, getColorClassNames } from '@/components/WorkoutForm';
+import { getColorClassNames } from '@/components/WorkoutForm';
 import { anton, libreBaskerville } from '@/utils/fonts';
 
 interface InitialStepProps {
@@ -39,7 +39,7 @@ const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) =
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`order-1 mt-[3vh] pl-16 pr-16 text-2xl text-justify ${libreBaskerville.className}`}>
+            <div className={`mt-[3vh] pl-16 pr-16 text-2xl text-justify ${libreBaskerville.className}`}>
                 {description}
             </div>
         </div>
@@ -66,7 +66,7 @@ const Tutorial = () => {
                     Cardio programs are ideal for increasing cardiovascular endurance and burning calories, while weight training building focuses on building muscle and strength development.
                     Calisthenics focuses on bodyweight movements to improve total functional fitness and flexibility.
                     Refer to the Resource Library for more information.' />
-                    <LaterStep stepNumber={'4'} stepName='DURATION' color={'bright-blue'} description='Choose the amount of time you&apos;d like your daily workout to take.' />
+                    <LaterStep stepNumber={'4'} stepName='DURATION' color={'bright-blue'} description={`Choose the amount of time you'd like your daily workout to take.`}/>
                     <LaterStep stepNumber={'5/6'} stepName='HEIGHT/WEIGHT' color={'bright-blue-2'} description='Use the scroller to enter your height and weight.' />
                     <LaterStep stepNumber={'7'} stepName='SPORT' color={'bright-purple'} description='Type in the sport you play, if any.' />
                 </div>

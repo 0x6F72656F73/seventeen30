@@ -20,8 +20,8 @@ interface DropdownSelectProps {
 }
 
 export const colorVariants: IColorVariants = {
-    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink', 'text-bright-pink'],
+    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green', 'text-bright-green'],
     'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
     'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
     'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
