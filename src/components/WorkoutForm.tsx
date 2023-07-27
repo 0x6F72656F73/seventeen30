@@ -155,7 +155,7 @@ function parseStreamedJSON(streamedData: string) {
 
 const WorkoutForm = () => {
   const [formData, setFormData] = useState({
-    span: '3 Day Plan',
+    span: '7 Day Plan',
     level: 'Intermediate',
     duration: '30 minutes',
     type: 'Weight Training',
@@ -216,7 +216,7 @@ const WorkoutForm = () => {
         }
 
         setFormData({ 
-          span: '3 Day Plan',
+          span: '7 Day Plan',
           level: 'Intermediate',
           duration: '30 minutes',
           type: 'Weight Training',
@@ -235,7 +235,7 @@ const WorkoutForm = () => {
         <DropdownSection
           title="SPAN"
           color="bright-pink"
-          fields={['1 Day Plan', '3 Day Plan', '30 Day Plan']}
+          fields={['1 Day Plan', '7 Day Plan', '30 Day Plan']}
           onFieldValueChange={handleFieldValueChange}
         />
         <DropdownSection
