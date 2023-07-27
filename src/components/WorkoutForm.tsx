@@ -155,10 +155,10 @@ function parseStreamedJSON(streamedData: string) {
 
 const WorkoutForm = () => {
   const [formData, setFormData] = useState({
-    span: '',
-    level: '',
-    duration: '',
-    type: '',
+    span: '3 Day Plan',
+    level: 'Intermediate',
+    duration: '30 minutes',
+    type: 'Weight Training',
     height: ((HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1]) / 2).toString(),
     weight: ((HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1]) / 2).toString(),
     sport: '',
@@ -216,12 +216,12 @@ const WorkoutForm = () => {
         }
 
         setFormData({ 
-          span: '',
-          level: '',
-          duration: '',
-          type: '',
-          height: '',
-          weight: '',
+          span: '3 Day Plan',
+          level: 'Intermediate',
+          duration: '30 minutes',
+          type: 'Weight Training',
+          height: ((HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1]) / 2).toString(),
+          weight: ((HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1]) / 2).toString(),
           sport: '',
         });
     } catch (error) {
