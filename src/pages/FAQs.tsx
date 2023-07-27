@@ -15,8 +15,7 @@ const QAPair = ({question, answer, color}: QAPairProps) => {
                     {question}
                 </div>
             </div>
-            <div className={`items-center mt-[3vh] ml-[20vh] pl-16 pr-16 text-3xl text-justify font-bold opacity-80`}>
-                {answer}
+            <div className={`items-center mt-[3vh] ml-[20vh] pl-16 pr-16 text-3xl text-justify font-bold opacity-80`} dangerouslySetInnerHTML={{__html: answer}}>
             </div>
         </div>
     )
@@ -44,7 +43,7 @@ const FAQs = () => {
                     answer={'To avoid injury, maintain proper form throughout the workouts. Continuous improvement requires progression, therefore as the program progresses, experiment with larger weights or increase the intensity of bodyweight exercises. Listen to your body and rest if you feel tired or uncomfortable. To attain best results, combine your plan with a healthy diet.'}
                     color='bright-pink' />
                     <QAPair question={'What do we do with your information?'}
-                    answer={'Upon entering your information, we will calculate your BMI according to your height and weight. The AI will then use the other information submitted to create a customized workout program for you. Refer to the Resource Library for information regarding BMI.'}
+                    answer={'Upon entering your information, we will calculate your BMI according to your height and weight. The AI will then use the other information submitted to create a customized workout program for you. Refer to the <a href="/resource-library" class="underline underline-offset-2">Resource Library</a> for information regarding BMI.'}
                     color='bright-green' />
                 </div>
             
