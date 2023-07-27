@@ -48,19 +48,18 @@ const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSe
 
   return (
       <div className='text-center text-white font-bold'>
-        <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+        <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
           {title}
         </div>
-        <div className="w-[50vh] h-[10vh] my-4 text-3xl">
+        <div className="w-[50vh] h-[10vh] my-[2vh] text-3xl">
         {fields.map((field) => (
           <motion.div
             key={field}
             onClick={() => handleFieldValueChange(field)}
-            className={`cursor-pointer mb-2 border-8 ${getColorClassNames(color)[2]}`}
+            className={`cursor-pointer mb-[2vh] border-8 rounded-[30px] ${getColorClassNames(color)[2]}`}
             whileHover={{ scale: 1.2, backgroundColor: getColorClassNames(color)[0], transition: { duration: .5 } }}
           >
-            <div className={`p-2 ${selectedField === field ? 'p-2' : ''} ${selectedField === field ? `bg-gradient-to-r from-black ${getColorClassNames(color)[3]} to-black` : ''}`}>
-
+            <div className={`p-5 ${selectedField === field ? `${getColorClassNames(color)[1]} rounded-[10px]` : ''}`}>
               {field}
             </div>
           </motion.div>
@@ -69,6 +68,7 @@ const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSe
       </div>
   );
 };
+
 
 
 interface SliderSelectProps {
@@ -89,7 +89,7 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
 
   return (
     <div className='text-center text-white font-bold'>
-      <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+      <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
       <div className="w-[50vh] h-[10vh] my-4 text-xl">
@@ -130,27 +130,16 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
 
   return (
     <div className='text-center text-white font-bold'>
-      <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+      <div className={`flex items-center justify-center rounded-[40px]  w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
       <div>
-        <input type='text' className="bg-transparent w-[50vh] h-[5vh] border-4 mt-8 text-4xl text-center"
+        <input type='text' className="bg-transparent rounded-[40px] w-[50vh] h-[5vh] border-4 mt-8 text-4xl text-center"
           value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}/>
       </div>
     </div>
   );
 };
-
-
-
-
-
-
-
-
-
-
-
 
 
 function parseStreamedJSON(streamedData: string) {
@@ -253,7 +242,7 @@ const WorkoutForm = () => {
 
   return (
     <div className="flex flex-col mt-[20vh]">
-      <div className={`grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[20vh] ${libreBaskerville.className}`}>
+      <div className={`grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[25vh] ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"
           color="bright-pink"
