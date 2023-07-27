@@ -2,7 +2,7 @@ import Link from 'next/link';
 
 import { libreBaskerville } from '@/utils/fonts';
 
-const Header = () => {
+const NavBar = () => {
     return (
         <div className={`mt-10 text-5xl text-white ${libreBaskerville.className}`}>
             <div className="flex flex-row justify-around">
@@ -23,4 +23,4 @@ const Header = () => {
     )
 }
 
-export default Header;
+export default NavBar;
