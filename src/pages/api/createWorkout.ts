@@ -13,6 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 const handler = async (req: NextRequest) => {
   const { formData } = await req.json();
+  formData.bmi = Math.round(703 * formData.weight / ((formData.height) ** 2));
   console.log(formData);
   // try {
   const response = await openai.createChatCompletion({
