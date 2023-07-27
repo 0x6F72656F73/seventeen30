@@ -91,8 +91,8 @@ const SliderSection = ({ title, color, min, max, onValueChange }: SliderSectionP
     'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
     'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
     'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
-    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow'],
-    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2'],
+    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
+    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
   };
 
   function getColorClassNames(color: string): string[] {
@@ -109,18 +109,26 @@ const SliderSection = ({ title, color, min, max, onValueChange }: SliderSectionP
         {title}
       </div>
       <div className="w-[50vh] h-[10vh] my-4 text-xl">
-        <input
+        {/* <input
           type="range"
           min={min}
           max={max}
           step="1"
           value={selectedValue}
           onChange={(event) => handleValueChange(event.target.value)}
-          className={`w-full h-4 ${getColorClassNames(color)[2]}`}
-          style={{ background: `linear-gradient(to right, ${colorVariants[color][0]}, ${colorVariants[color][3]})` }}
-        />
+          className={`w-full h-12  range`}
+          // style={{ background: `linear-gradient(to right, ${colorVariants[color][0]}, ${colorVariants[color][3]})` }}
+        /> */}
+        <input type="range" min={min} max={max} step="1"
+          value={selectedValue}  onChange={(event) => handleValueChange(event.target.value)}
+          className={`w-full mt-7 appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full
+          ${getColorClassNames(color)[4]} [&::-webkit-slider-thumb]:appearance-none
+          [&::-webkit-slider-thumb]:h-[50px] [&::-webkit-slider-thumb]:w-[50px] 
+          [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white`} />
+
+
         <div className="flex justify-center">
-          <div className="w-20 text-center font-bold">
+          <div className="w-30 mt-5 px-5 py-2 border-4 text-center text-3xl font-black">
             {title === "HEIGHT" ? HeightConverter(selectedValue) : WeightConverter(selectedValue)}
           </div>
         </div>
