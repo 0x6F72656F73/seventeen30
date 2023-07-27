@@ -19,6 +19,24 @@ interface DropdownSelectProps {
   onFieldValueChange: (title: string, value: string) => void;
 }
 
+export const colorVariants: IColorVariants = {
+    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
+    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
+    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
+    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
+    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
+    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
+    'bright-purple': ['#CB6CE6','bg-bright-purple', 'border-bright-purple', 'from-bright-purple']
+  };
+
+export const getColorClassNames = (color: string): string[] => {
+    if (colorVariants.hasOwnProperty(color)) {
+      return colorVariants[color];
+    } else {
+      throw new Error(`Color ${color} is not defined in colorVariants`);
+    }
+  };
+
 
 const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSelectProps) => {
   const [selectedField, setSelectedField] = useState('');
@@ -26,23 +44,6 @@ const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSe
   const handleFieldValueChange = (value: string) => {
     setSelectedField(value);
     onFieldValueChange(title, value);
-  };
-
-  const colorVariants: IColorVariants = {
-    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'via-bright-pink'],
-    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'via-bright-green'],
-    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'via-bright-orange'],
-    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'via-bright-blue'],
-    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'via-bright-yellow'],
-    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'via-bright-blue-2'],
-  };
-
-  function getColorClassNames(color: string): string[] {
-    if (colorVariants.hasOwnProperty(color)) {
-      return colorVariants[color];
-    } else {
-      throw new Error(`Color ${color} is not defined in colorVariants`);
-    }
   };
 
   return (
@@ -86,23 +87,6 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
     onValueChange(title, value);
   };
 
-  const colorVariants: Record<string, string[]> = {
-    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
-    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
-    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
-    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
-    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
-  };
-
-  function getColorClassNames(color: string): string[] {
-    if (colorVariants.hasOwnProperty(color)) {
-      return colorVariants[color];
-    } else {
-      throw new Error(`Color ${color} is not defined in colorVariants`);
-    }
-  };
-
   return (
     <div className='text-center text-white font-bold'>
       <div className={`flex items-center justify-center w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
@@ -143,23 +127,6 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
     onValueChange(title, value);
   };
 
-  const colorVariants: Record<string, string[]> = {
-    'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink'],
-    'bright-green': ['#10E62C','bg-bright-green', 'border-bright-green', 'from-bright-green'],
-    'bright-orange': ['#FF4D00','bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
-    'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
-    'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
-    'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
-    'bright-purple': ['#CB6CE6','bg-bright-purple', 'border-bright-purple', 'from-bright-purple']    
-  };
-
-  function getColorClassNames(color: string): string[] {
-    if (colorVariants.hasOwnProperty(color)) {
-      return colorVariants[color];
-    } else {
-      throw new Error(`Color ${color} is not defined in colorVariants`);
-    }
-  };
 
   return (
     <div className='text-center text-white font-bold'>
@@ -189,7 +156,6 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
 function parseStreamedJSON(streamedData: string) {
   let parsedData = null;
   try {
-    console.log(streamedData);
     // Try to parse the JSON data as a whole
     parsedData = JSON.parse(streamedData);
   } catch (error) {
@@ -301,15 +267,15 @@ const WorkoutForm = () => {
           onFieldValueChange={handleFieldValueChange}
         />
         <DropdownSelect
-          title="DURATION"
-          color="bright-blue"
-          fields={['15 Minutes', '30 Minutes', '60 Minutes']}
-          onFieldValueChange={handleFieldValueChange}
-        />
-        <DropdownSelect
           title="TYPE"
           color="bright-orange"
           fields={['Cardio', 'Weight Training', 'Calisthenics']}
+          onFieldValueChange={handleFieldValueChange}
+        />
+        <DropdownSelect
+          title="DURATION"
+          color="bright-blue"
+          fields={['15 Minutes', '30 Minutes', '60 Minutes']}
           onFieldValueChange={handleFieldValueChange}
         />
         <SliderSelect
