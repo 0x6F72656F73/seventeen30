@@ -3,7 +3,6 @@ import Image from 'next/image'
 
 import WorkoutForm from '@/components/WorkoutForm'
 import Schedule from '@/components/Schedule'
-import Footer from '@/components/Footer'
 import AIDataContext from '@/utils/AIDataContext';
 
 import { IExerciseList } from '@/types/common'

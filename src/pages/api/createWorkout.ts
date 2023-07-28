@@ -36,8 +36,6 @@ const handler = async (req: NextRequest) => {
       Each exercise cannot be longer than 25 characters. The number of days is not related to the duration of each workout session.
       ONLY REPLY WITH THE LIST-FORMATTED WORKOUT PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.
       
-      
-      
       Generate a list-formatted output which has length: ${formData.span}. Here is the type structure for one exercise:
       type $Exercise = { "name": string, "reps": int, "sets": int, "rest": int }
       
