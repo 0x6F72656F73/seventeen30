@@ -75,7 +75,7 @@ const About = () => (
             />
             <MemberBio 
                 name='Sana Khan'
-                sections={['User Experience and Understanding', 'FAQ page, User Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
+                sections={['User Experience and Understanding', 'FAQ, Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
                 img='/images/Sana.png'
                 borderColor="#D90368"
             />
