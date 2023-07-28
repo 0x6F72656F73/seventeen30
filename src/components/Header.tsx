@@ -53,7 +53,7 @@ const Header = () => {
                         <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
-                        className={`inline w-[6vh] h-[8vh] ml-1  2xl:-mt-[1.5vw] xl:-mt-[2.5vw] lg:-mt-[3.5vw] md:-mt-[4.5vw] -mt-[5.5vw] transition-transform duration-200 transform ${
+                        className={`inline w-[6vh] h-[8vh] ml-1  2xl:-mt-[1.5vw] xl:-mt-[1.5vw] lg:-mt-[3.5vw] md:-mt-[4.5vw] -mt-[5.5vw] transition-transform duration-200 transform ${
                             isHover ? 'rotate-180' : 'rotate-0'
                         }`}
                         >
