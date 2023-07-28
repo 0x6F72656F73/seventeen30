@@ -46,7 +46,7 @@ const Header = () => {
                 </div>
                 <motion.div
                 onClick={toggleHoverMenu}
-                className="flex flex-col justify-items-center items-center"
+                className="flex flex-col justify-items-center items-center -mr-[10vh]"
                 >
                     <div className='flex flex-row'>
                         <div>MORE</div>
