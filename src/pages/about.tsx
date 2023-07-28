@@ -21,7 +21,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
 
         </div>
         <div className='flex flex-col ml-10'>
-            <div className={`flex flex-wrap gap-2 text-7xl mt-4 ${anton.className}`}>
+            <div className={`flex flex-wrap gap-4 text-7xl mt-4 ${anton.className}`}>
                 <div className='text-bright-green'>
                     {firstName}
                 </div>
@@ -58,7 +58,7 @@ const About = () => (
                 However, Seventeen 30 aims to change that: our mission is to democratize fitness, giving users custom, professional-quality workout plans with the click of a button. By leveraging the power of generative AI, Seventeen 30 offers an unprecedented new approach to your exercise.
             </div>
 
-            <div className={`flex flex-wrap gap-[2vh] mt-[20vh] text-10xl ${anton.className}`}>
+            <div className={`flex flex-wrap gap-[2vh] mt-[15vh] text-10xl ${anton.className}`}>
                 <div className='text-bright-green'>
                     THE
                 </div>

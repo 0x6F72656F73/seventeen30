@@ -15,7 +15,7 @@ const QAPair = ({question, answer, color}: QAPairProps) => {
                     {question}
                 </div>
             </div>
-            <div className={`items-center mt-[3vh] ml-[20vh] pl-16 pr-16 text-3xl text-justify font-bold opacity-80`} dangerouslySetInnerHTML={{__html: answer}}>
+            <div className={`items-center mt-[3vh] ml-[20vh] pl-16 pr-16 text-4xl text-justify font-bold opacity-80`} dangerouslySetInnerHTML={{__html: answer}}>
             </div>
         </div>
     )
