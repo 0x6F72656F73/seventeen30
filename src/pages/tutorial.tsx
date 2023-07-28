@@ -68,6 +68,7 @@ const Tutorial = () => {
                     <LaterStep stepNumber={'4'} stepName='DURATION' color={'bright-blue'} description={`Choose the amount of time you'd like your daily workout to take.`}/>
                     <LaterStep stepNumber={'5/6'} stepName='HEIGHT/WEIGHT' color={'bright-blue-2'} description='Use the scroller to enter your height and weight.' />
                     <LaterStep stepNumber={'7'} stepName='SPORT' color={'bright-purple'} description='Type in the sport you play, if any.' />
+                    <LaterStep stepName={'8'} stepNumber='SUBMIT' color={'bright-purple-2'} description='Click the submit button to generate your workout plan!' />
                 </div>
             </div>
         </div>

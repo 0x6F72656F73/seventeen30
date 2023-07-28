@@ -26,7 +26,8 @@ export const colorVariants: IColorVariants = {
     'bright-blue': ['#5CE1E6','bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
     'bright-yellow': ['#FFE347','bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
     'bright-blue-2': ['#004AAD','bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
-    'bright-purple': ['#CB6CE6','bg-bright-purple', 'border-bright-purple', 'from-bright-purple']
+    'bright-purple': ['#CB6CE6','bg-bright-purple', 'border-bright-purple', 'from-bright-purple'],
+    'bright-purple-2': ['#5E1474', 'bg-bright-purple-2', 'border-bright-purple-2', 'from-bright-purple-2']
   };
 
 export const getColorClassNames = (color: string): string[] => {
@@ -185,7 +186,7 @@ function retry(promise: () => Promise<Response>, onRetry: (retryNumber: number, 
 
       const {value} = await reader.read();
       if (value) {
-        console.log(value);
+        // console.log(value);
         return [reader, value];
       } else {
         throw new Error('done');
@@ -269,7 +270,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
         while (true) {
             const {value, done} = await reader.read();
             if (done) break;
-            console.log(value)
+            // console.log(value)
             allData += value;
             if (value.includes(']')) {  
               allData = allData.replace('|', '');
@@ -354,7 +355,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
       <motion.button
             className={`flex items-center mt-[20vh] mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
             onClick={() => handleSubmit()}
-            whileHover={{ scale: 1.2, backgroundColor: "#CB6CE6", transition: { duration: .5 } }}
+            whileHover={{ scale: 1.2, backgroundColor: "#5E1474", transition: { duration: .5 } }}
           >
             <div className={`text-9xl hollow-text-3 text-center ${anton.className}`}> 
               DONE

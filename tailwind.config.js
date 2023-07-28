@@ -19,6 +19,7 @@ module.exports = {
         'bright-yellow': '#FFE347',
         'bright-blue-2': '#004AAD',
         'bright-purple': '#CB6CE6',
+        'bright-purple-2': '#5E1474',
       },
       fontFamily: {
         mono: ['var(--font-anton)', 'var(--font-libreBaskerville)'],
