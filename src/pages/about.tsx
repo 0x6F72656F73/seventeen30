@@ -69,25 +69,25 @@ const About = () => (
         <div className='grid grid-cols-1 mt-[10vh] justify-items-center'>
             <MemberBio 
                 name='Rahul Datta'
-                sections={['Head Web Developer', 'Frontend and Backend', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
+                sections={['Head Web Developer', 'Frontend and Backend Developer', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
                 img='/images/Rahul4.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Sana Khan'
-                sections={['User Experience and Understanding', 'FAQ, Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
+                sections={['Solutions Architect and UX designer', 'FAQ, Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
                 img='/images/Sana.png'
                 borderColor="#D90368"
             />
             <MemberBio 
                 name='Jack Deutsch'
-                sections={['Prompt Engineer', 'Bridged the gap between the User and API', 'McLean, Virginia', 'CASPCA Website User Interface Designer']}
+                sections={['Prompt Engineer', 'Bridged the gap between the User and API', 'McLean, Virginia', 'CASPCA Website UI Designer']}
                 img='/images/Jack.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Gina Kaiser'
-                sections={['User Interface Designer', 'Website Layout, Logo, and Flow', 'Burke, Virginia', 'Competitive Dancer at Buffas Dance Studio']}
+                sections={['Solutions Architect and UX designer', 'Website Layout, Logo, and Flow', 'Burke, Virginia', 'Competitive Dancer at Buffas Dance Studio']}
                 img='/images/Gina.png'
                 borderColor="#D90368"
             />
