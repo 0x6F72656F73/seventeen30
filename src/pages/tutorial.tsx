@@ -34,7 +34,7 @@ const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) =
     return (
         <div className={`flex flex-col items-center mb-[5vh] ml-[3vh] mr-[3vh]`}>
             <div className='text-center text-white font-bold text-4xl'>
-                <div className={`flex items-center justify-center rounded-[30px] w-[75vh] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
+                <div className={`flex items-center justify-center rounded-[30px] w-[80vh] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
