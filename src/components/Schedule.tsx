@@ -6,16 +6,16 @@ import AIDataContext from "@/utils/AIDataContext";
 import { IWorkout } from "@/types/common";
 import { anton } from "@/utils/fonts";
 
-const Workout = ({name, reps, sets, rest}: IWorkout) => {
+const Workout = ({name, reps, sets, rest, duration}: IWorkout) => {
+    const out = reps !== 0 ? reps : `${duration}s`;
     return (
-        <div>
-            <h1 className="text-3xl font-bold mb-2">
-                {name}
-                </h1>
-
-            <h2>Sets x Reps: {sets}x{reps}</h2>
+        <div className="text-center">
+            <div>
+            <h1 className="my-2 font-bold truncate text-2xl"> {name} </h1>
+            <h2 className="text-xl">Sets x Reps: {sets}x{out}</h2>
             
             <h3>Rest time: {rest}s</h3>
+            </div>
         </div>
     )
 }
@@ -53,11 +53,11 @@ interface DayProps {
 
 const Day = ({dayNumber, workouts, conditionalMargin}: DayProps) => {
     return (
-        <div className={`border-4 border-bright-pink py-6 ${conditionalMargin} min-w-[32vh] text-center`}>
+        <div className={`border-4 border-bright-pink py-6 ${conditionalMargin} min-w-[45vh] text-center`}>
             <h1 className="text-5xl text-white mb-5">Day {parseInt(dayNumber) + 1 }</h1>
             {workouts && workouts.length > 0 ? (workouts.map((workout) => (
-                <Workout key={workout.name} name={workout.name} reps={workout.reps} sets={workout.sets} rest={workout.rest} />
                 <Workout key={workout.name} name={workout.name} reps={workout.reps} sets={workout.sets} rest={workout.rest} duration={workout.duration} />
+            ))) : ( 
                 <LoadingAnimation />
             )}
         </div>
@@ -83,13 +83,13 @@ const Schedule = () => {
                     </div>
                     )}
                 {Object.keys(AIData).length > 1 && (
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-0 mt-[20vh]">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center mt-[20vh]">
                         {
                             Object.keys(AIData).map((dayNumber) => (
                                 <Day key={dayNumber} dayNumber={dayNumber} workouts={AIData[dayNumber]}
                                 conditionalMargin={`${
-                                    (parseInt(dayNumber)+1) % 3 !== 3 ? 'mr-[-4px]' : '' // Add negative margin to the right for all except the last item in each row
-                                  } ${(parseInt(dayNumber)) < Object.keys(AIData).length - 1 ? 'mb-[-4px]' : ''}`}/>
+                                (parseInt(dayNumber)+1) % 3 !== 3 ? 'mr-[-4px]' : '' // Add negative margin to the right for all except the last item in each row
+                                } ${(parseInt(dayNumber)) < Object.keys(AIData).length - 1 ? 'mb-[-4px]' : ''}`}/>
                             ))
                         }
                     </div>

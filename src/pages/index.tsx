@@ -13,8 +13,6 @@ export default function Home() {
   const scheduleRef = useRef<HTMLDivElement>(null);
 
   const triggerScroll = () => {
-    console.log('triggered');
-    console.log(scheduleRef.current);
     setTimeout(() => {
       if (scheduleRef.current) {
       scheduleRef.current.scrollIntoView({ behavior: 'smooth' });

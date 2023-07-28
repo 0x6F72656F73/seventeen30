@@ -247,7 +247,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
 
   return (
     <div className="flex flex-col mt-[20vh]">
-      <div className={`grid md:grid-cols-2 sm:grid-cols-1 justify-items-center gap-y-[25vh] ${libreBaskerville.className}`}>
+      <div className={`grid lg:grid-cols-2 md:grid-cols-1 justify-items-center gap-y-[32vh] ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"
           color="bright-pink"
