@@ -1,9 +1,8 @@
 const formData = {
-    span: '8 Day Plan',
+    span: '7 Day Plan',
     level: 'Beginner',
-    duration: '15 Minutes',
-    type: 'Strength Training',
-    sport: 'Basketball',
+    duration: '30 Minutes',
+    type: 'Weight Training',
     height: '65',
     weight: '120',
 }
@@ -24,11 +23,14 @@ async function testApi() {
             body: JSON.stringify({formData}),
         })
 
+        console.log(response.status);
+
         const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
         let allData = '';
         while (true) {
             const {value, done} = await reader.read();
             if (done) break;
+            // console.log(value)
             allData += value;
 
             if (value.includes("]")) {
@@ -46,7 +48,7 @@ async function testApi() {
         }
         
         console.log('Response fully received');
-        console.log(allData);
+        console.log(allData.length);
     } catch (error) {
         console.log(error);
     }

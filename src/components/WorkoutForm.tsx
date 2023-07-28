@@ -173,7 +173,7 @@ function waitFor(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
-function retry(promise: () => Promise<Response>, onRetry: (retryNumber: number, timeToWait: number) => void, maxRetries: number,) {
+function retry(promise: () => Promise<Response>, onRetry: (retryNumber: number, timeToWait: number) => void, maxRetries: number,setOnError: (value: boolean) => void) {
   async function retryWithBackoff(retries: number): Promise<any> {
     // wait 15 seconds, 30 seconds, 60 seconds
     const timeToWait = retries * 15000;
@@ -197,6 +197,7 @@ function retry(promise: () => Promise<Response>, onRetry: (retryNumber: number, 
     } catch (e) {
       if (retries < maxRetries) {
         onRetry(retries + 1, timeToWait);
+        setOnError(true);
         return retryWithBackoff(retries + 1);
       } else {
         console.warn("Max retries reached. Bubbling the error up");
@@ -256,7 +257,8 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
             // console.log("on retry called...");
             console.log(`Waiting for ${timeToWait}ms before next attempt`);
           },
-          4
+          4,
+          setOnError
         );
 
         const spanLength = parseInt(formData.span); 
@@ -354,7 +356,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
             </div>
           </motion.button>
 
-      {onError && <div className={`flex flex-col justify-center items-center mt-20 ${libreBaskerville.className} text-red-500`}>Rate limit reached. Please try again later.</div>}
+      {onError && <div className={`flex flex-col justify-center items-center mt-20 ${libreBaskerville.className} text-red-500`}>Rate limit reached. Retrying automatically, please wait...</div>}
     </div>
   );
 };
