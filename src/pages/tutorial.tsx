@@ -12,12 +12,12 @@ interface InitialStepProps {
 const InitialStep = ({stepNumber, stepName, color, place, description}: InitialStepProps) => {
     return (
         <div className={`flex ${place === 'r' ? 'flex-row' : 'flex-row-reverse'} items-center mb-[8vh] ml-[3vh] mr-[3vh]`}>
-            <div className='font-bold text-center text-white text-6xl'>
+            <div className='font-bold text-center text-white text-4xl'>
                 <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh]  ${place === 'r' ? 'ml-[5vh]' : 'mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`${place === 'r' ? 'ml-[3vh]' : 'mr-[3vh]' } pl-16 pr-16 text-4xl lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}}>
+            <div className={`${place === 'r' ? 'ml-[3vh]' : 'mr-[3vh]' } pl-16 pr-16 text-2xl lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}}>
             </div>
         </div>
     )
@@ -33,8 +33,8 @@ interface LaterStepProps {
 const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) => {
     return (
         <div className={`flex flex-col items-center mb-[5vh] ml-[3vh] mr-[3vh]`}>
-            <div className='text-center text-white font-bold text-6xl'>
-                <div className={`flex items-center justify-center rounded-[30px] w-[65vh] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
+            <div className='text-center text-white font-bold text-4xl'>
+                <div className={`flex items-center justify-center rounded-[30px] w-[75vh] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>

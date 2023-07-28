@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" sizes="100vw" className="w-full h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" className="w-[80%] h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
         <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
           <div className={`py-[5vh] hollow-text text-center text-6xl ${anton.className}`}>
@@ -32,7 +32,7 @@ export default function Home() {
       <AIDataContext.Provider value={{ AIData, setAIData }}>
         <WorkoutForm  />
 
-         <Schedule />
+        <Schedule />
       </AIDataContext.Provider>
 
     </main>

@@ -15,11 +15,9 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
     const lastName = name.split(' ')[1];
     
     return (
-    <div className='flex flex-row ml-[3vh] mb-[20vh]'>
-        <div className="">
-                <Image src={img} alt="Rahul Datta" height={400} width={400} style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
+    <div className='flex md:flex-col lg:flex-row ml-[3vh] mb-[20vh]'>
+        <Image src={img} alt="Rahul Datta" height={400} width={400} style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
 
-        </div>
         <div className='flex flex-col ml-10'>
             <div className={`flex flex-wrap gap-4 text-7xl mt-4 ${anton.className}`}>
                 <div className='text-bright-green'>
@@ -29,7 +27,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
                     {lastName}
                 </div>
             </div>
-            <div className={`min-w-[55vh] mt-4 text-4xl ${libreBaskerville.className}`}>
+            <div className={`min-w-[55vh] mt-4 text-3xl ${libreBaskerville.className}`}>
                 {sections.map((section, index) => (
                     <div key={index} className='mb-10'>
                         {headers[index]}: {section}
@@ -68,7 +66,7 @@ const About = () => (
             </div>
         </div>
 
-        <div className='flex flex-wrap mt-[10vh]'>
+        <div className='grid grid-cols-1 mt-[10vh]'>
             <MemberBio 
                 name='Rahul Datta'
                 sections={['Head Web Developer', 'Coded the backend of the website', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
@@ -94,7 +92,6 @@ const About = () => (
                 borderColor="#D90368"
             />
         </div>
-        
     </div>
 );
 

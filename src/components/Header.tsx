@@ -32,52 +32,50 @@ const Header = () => {
     };
 
     return (
-        <div className={`mt-10 text-5xl text-white ${libreBaskerville.className}`}>
-            <div className="flex flex-row space-x-[13vh]">
-                <div>
-                    <Link href="/" className='ml-[14vh]'>HOME</Link>
+        <div className={`mt-10 text-3xl text-white ${libreBaskerville.className}`}>
+            <div className="flex flex-row justify-around">
+                <div className='ml-[7vh]'>
+                    <Link href="/" >HOME</Link>
                 </div>
-                <div>
-                    <Link href="/tutorial" className='ml-[4vh]'>TUTORIAL</Link>
+                <div className=''>
+                    <Link href="/tutorial">TUTORIAL</Link>
                 </div>
-                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="500" height="0" sizes="200vw" className="h-auto -mt-[5vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
-                <div>
-                    <Link href="/about" className='-ml-[5vh]'>ABOUT US</Link>
+                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden xl:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+                <div className='-mr-[10vh] whitespace-nowrap'>
+                    <Link href="/about">ABOUT US</Link>
                 </div>
-                <div>
-                    <motion.div
-                    onHoverStart={toggleHoverMenu}
-                    onHoverEnd={toggleHoverMenu}
-                    >
-                        <div className='flex flex-row'>
-                            <div>MORE</div>
-                            <svg
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            className={`inline w-[6vh] h-[8vh] ml-1 -mt-11 transition-transform duration-200 transform ${
-                                isHover ? 'rotate-180' : 'rotate-0'
-                            }`}
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                    clipRule="evenodd"
-                                ></path>
-                            </svg>
-                        </div>
-                        <motion.div
-                        className="flex flex-col mt-[1vh]"
-                        initial="exit"
-                        animate={isHover ? "enter" : "exit"}
-                        variants={subMenuAnimate}
+                <motion.div
+                onClick={toggleHoverMenu}
+                className="flex flex-col justify-items-center items-center"
+                >
+                    <div className='flex flex-row'>
+                        <div>MORE</div>
+                        <svg
+                        fill="currentColor"
+                        viewBox="0 0 20 20"
+                        className={`inline w-[6vh] h-[8vh] ml-1  2xl:-mt-[1.5vw] xl:-mt-[2.5vw] lg:-mt-[3.5vw] md:-mt-[4.5vw] -mt-[5.5vw] transition-transform duration-200 transform ${
+                            isHover ? 'rotate-180' : 'rotate-0'
+                        }`}
                         >
-                            <div className="flex flex-col gap-y-[2vh]">
-                                <Link href="/FAQs">FAQs</Link>
-                                <Link href="/resource-library">Resource Library</Link>
-                            </div>
-                        </motion.div>
+                            <path
+                                fillRule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clipRule="evenodd"
+                            ></path>
+                        </svg>
+                    </div>
+                    <motion.div
+                    className="flex flex-col mt-[1vh]"
+                    initial="exit"
+                    animate={isHover ? "enter" : "exit"}
+                    variants={subMenuAnimate}
+                    >
+                        <div className="flex flex-col gap-y-[2vh] justify-items-center items-center">
+                            <Link href="/FAQs">FAQs</Link> 
+                            <Link href="/resource-library">RESOURCE LIBRARY</Link>
+                        </div>
                     </motion.div>
-                </div>
+                </motion.div>
             </div>
         </div>
     )
