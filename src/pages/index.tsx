@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 
 import WorkoutForm from '@/components/WorkoutForm'
@@ -10,6 +10,17 @@ import { anton } from '@/utils/fonts';
 
 export default function Home() {
   const [AIData, setAIData] = useState<IExerciseList>();
+  const scheduleRef = useRef<HTMLDivElement>(null);
+
+  const triggerScroll = () => {
+    console.log('triggered');
+    console.log(scheduleRef.current);
+    setTimeout(() => {
+      if (scheduleRef.current) {
+      scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 1);
+  };
 
   return (
     <main>
@@ -30,9 +41,11 @@ export default function Home() {
       </div>
 
       <AIDataContext.Provider value={{ AIData, setAIData }}>
-        <WorkoutForm  />
+        <WorkoutForm triggerScroll={triggerScroll} />
 
-        <Schedule />
+        <div ref={scheduleRef}>
+          <Schedule />
+        </div>
       </AIDataContext.Provider>
 
     </main>

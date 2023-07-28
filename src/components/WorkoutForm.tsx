@@ -163,8 +163,11 @@ function parseStreamedJSON(streamedData: string) {
 //   return JSON.parse(json);
 // };
 
+interface WorkoutFormProps {
+  triggerScroll: () => void;
+}
 
-const WorkoutForm = () => {
+const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
   const [formData, setFormData] = useState({
     span: '7 Day Plan',
     level: 'Intermediate',
@@ -193,6 +196,8 @@ const WorkoutForm = () => {
     const spanLength = parseInt(formData.span); 
     const initialDays = Array(spanLength).fill([]);
     setDays(initialDays); 
+
+    triggerScroll();
       
     try {
         const response = await fetch("/api/createWorkout", {
