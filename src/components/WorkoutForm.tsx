@@ -94,12 +94,13 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
         {title}
       </div>
       <div className="w-[50vh] h-[10vh] my-4 text-xl">
-        <input type="range" min={min} max={max} step="1"
+        <motion.input type="range" min={min} max={max} step="1"
           value={selectedValue}  onChange={(event) => handleValueChange(event.target.value)}
           className={`w-full mt-7 appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full
           ${getColorClassNames(color)[4]} [&::-webkit-slider-thumb]:appearance-none
           [&::-webkit-slider-thumb]:h-[50px] [&::-webkit-slider-thumb]:w-[50px] 
-          [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white`} />
+          [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white`}
+          whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
 
 
         <div className="flex justify-center">
@@ -135,8 +136,9 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
         {title}
       </div>
       <div>
-        <input type='text' className="bg-transparent rounded-[40px] w-[50vh] h-[5vh] border-4 mt-8 text-4xl text-center"
-          value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}/>
+        <motion.input type='text' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
+          value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}
+          whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
       </div>
     </div>
   );
@@ -287,16 +289,6 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
 
             }
         }
-
-        setFormData({ 
-          span: '7 Day Plan',
-          level: 'Intermediate',
-          duration: '30 minutes',
-          type: 'Weight Training',
-          height: ((HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1]) / 2).toString(),
-          weight: ((HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1]) / 2).toString(),
-          sport: '',
-        });
     } catch (error) {
         console.error(error);
         setOnError(true);
@@ -304,7 +296,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
   };
 
   return (
-    <div className="flex flex-col mt-[20vh]">
+    <div className="flex flex-col mt-[10vh]">
       <div className={`grid lg:grid-cols-2 md:grid-cols-1 justify-items-center gap-y-[32vh] ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"

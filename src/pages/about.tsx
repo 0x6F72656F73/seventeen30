@@ -16,9 +16,9 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
     
     return (
     <div className='flex md:flex-col lg:flex-row ml-[3vh] mb-[20vh]'>
-        <Image src={img} alt="Rahul Datta" height={400} width={400} style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
+        <Image src={img} alt="Rahul Datta" width={400} height={0} className='h-auto' style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
 
-        <div className='flex flex-col ml-10'>
+        <div className='flex flex-col ml-[10vh]'>
             <div className={`flex flex-wrap gap-4 text-7xl mt-4 ${anton.className}`}>
                 <div className='text-bright-green'>
                     {firstName}
@@ -66,10 +66,10 @@ const About = () => (
             </div>
         </div>
 
-        <div className='grid grid-cols-1 mt-[10vh]'>
+        <div className='grid grid-cols-1 mt-[10vh] justify-items-center'>
             <MemberBio 
                 name='Rahul Datta'
-                sections={['Head Web Developer', 'Coded the backend of the website', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
+                sections={['Head Web Developer', 'Frontend and Backend', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
                 img='/images/Rahul4.png'
                 borderColor="#10E62C"
             />

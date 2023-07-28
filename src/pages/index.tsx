@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <main>
       <div className="min-h-screen flex flex-col items-center justify-center">
-        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" className="w-[80%] h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" className="w-[70%] h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
         <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
           <div className={`py-[5vh] hollow-text text-center text-6xl ${anton.className}`}>
@@ -32,9 +32,9 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='mt-48'>
-        <div className={`text-center text-9xl hollow-text-2  ${anton.className}`}> {/*make text larger*/}
-          7 STEPS
+      <div className='mt-36'>
+        <div className={`text-center text-10xl hollow-text-2  ${anton.className}`}> {/*make text larger*/}
+          8 STEPS
         </div>
       </div>
 

@@ -34,21 +34,21 @@ const Header = () => {
     return (
         <div className={`mt-10 text-3xl text-white ${libreBaskerville.className}`}>
             <div className="flex flex-row justify-around">
-                <div className='ml-[7vh]'>
+                <div className='ml-[7vh] hover:text-gray-600'>
                     <Link href="/" >HOME</Link>
                 </div>
-                <div className=''>
+                <div className='hover:text-gray-600'>
                     <Link href="/tutorial">TUTORIAL</Link>
                 </div>
                 <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden xl:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
-                <div className='-mr-[10vh] whitespace-nowrap'>
+                <div className='-mr-[10vh] whitespace-nowrap hover:text-gray-600'>
                     <Link href="/about">ABOUT US</Link>
                 </div>
                 <motion.div
                 onClick={toggleHoverMenu}
                 className="flex flex-col justify-items-center items-center -mr-[10vh]"
                 >
-                    <div className='flex flex-row'>
+                    <div className='flex flex-row hover:text-gray-600'>
                         <div>MORE</div>
                         <svg
                         fill="currentColor"
@@ -71,8 +71,8 @@ const Header = () => {
                     variants={subMenuAnimate}
                     >
                         <div className="flex flex-col gap-y-[2vh] justify-items-center items-center">
-                            <Link href="/FAQs">FAQs</Link> 
-                            <Link href="/resource-library">RESOURCE LIBRARY</Link>
+                            <Link href="/FAQs" className='hover:text-gray-600'>FAQs</Link> 
+                            <Link href="/resource-library" className='hover:text-gray-600'>RESOURCE LIBRARY</Link>
                         </div>
                     </motion.div>
                 </motion.div>

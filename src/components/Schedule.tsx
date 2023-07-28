@@ -7,13 +7,12 @@ import { IWorkout } from "@/types/common";
 import { anton } from "@/utils/fonts";
 
 const Workout = ({name, reps, sets, rest, duration}: IWorkout) => {
-    const out = reps !== 0 ? reps : `${duration}s`;
+
     return (
         <div className="text-center">
             <div>
             <h1 className="my-2 font-bold truncate text-2xl"> {name} </h1>
-            <h2 className="text-xl">Sets x Reps: {sets}x{out}</h2>
-            
+            {reps !== 0 ? <h2 className="text-xl">Sets x Reps:{sets}x{reps}</h2> : <h2 className="text-xl">Sets x Time:{sets}x{duration}</h2>}
             <h3>Rest time: {rest}s</h3>
             </div>
         </div>
@@ -75,15 +74,21 @@ const Schedule = () => {
         <div>
             <div className="flex flex-col items-center mt-[50vh]">
                 <div className={`text-9xl hollow-text-2 ${anton.className}`}>
-                    SCHEDULE
+                    WORKOUT PLAN
+                </div>
+                {/* <div className={`mt-[5vh] text-4xl ${anton.className}`}>
+                    Your personalized workout plan
+                </div> */}
+                <div className={`mt-[1vh] mb-[10vh] text-2xl`}>
+                    (If you don&apos;t like this workout plan click the submit button again to generate a new one!)
                 </div>
                 {Object.keys(AIData).length === 1 && (
-                    <div className="w-[40vh] mt-[20vh]">
+                    <div className="w-[40vh]">
                         <Day key={'0'} dayNumber={'0'} workouts={AIData['0']} conditionalMargin={''}/>
                     </div>
                     )}
                 {Object.keys(AIData).length > 1 && (
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center mt-[20vh]">
+                    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center">
                         {
                             Object.keys(AIData).map((dayNumber) => (
                                 <Day key={dayNumber} dayNumber={dayNumber} workouts={AIData[dayNumber]}

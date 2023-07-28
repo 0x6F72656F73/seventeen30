@@ -35,7 +35,7 @@ const handler = async (req: NextRequest) => {
       The number of days is not related to the duration of each workout session. Try to make no workout session the exact same, but it is okay to repeat exercises after at least 3 days.
       ONLY REPLY WITH THE LIST-FORMATTED WORKOUT PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.
       
-      Generate a list-formatted output which has length: ${formData.span}. If reps is a more accurate measurement than duration, set the duration to 0. Vice versa. The units for duration is minutes.
+      Generate a list-formatted output which has a total of ${formData.span} lists. If reps is a more accurate measurement than duration, set the duration to 0. Vice versa. The units for duration is minutes.
       Here is the type structure for one exercise:
       type $Exercise = { "name": string, "reps": int, "duration": int, "sets": int, "rest": int }
       required constraint: name.length < 20
