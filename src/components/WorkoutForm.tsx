@@ -144,24 +144,66 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
 
 function parseStreamedJSON(streamedData: string) {
   let parsedData = null;
+  let extraData = '';
   try {
     // Try to parse the JSON data as a whole
     parsedData = JSON.parse(streamedData);
   } catch (error) {
-    // If the JSON parsing fails, handle partial parsing
+    // If the JSON parsing fails, handle partial parsing. This occurs when the JSON is streamed in chunks. also return the extra data that was not parsed
     const lastBracketIndex = streamedData.lastIndexOf("]");
     if (lastBracketIndex !== -1) {
       const partialJSON = streamedData.slice(0, lastBracketIndex + 1);
       parsedData = JSON.parse(partialJSON);
+
+      extraData = streamedData.slice(lastBracketIndex + 1);
     }
   }
-  return parsedData;
+  return [parsedData, extraData];
 }
 
 // const parseStreamedJSON = (jsonString: string) => {
 //   const json = jsonString.replace(/\|/g, '');
 //   return JSON.parse(json);
 // };
+
+function waitFor(milliseconds: number) {
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+}
+
+function retry(promise: () => Promise<Response>, onRetry: (retryNumber: number, timeToWait: number) => void, maxRetries: number,) {
+  async function retryWithBackoff(retries: number): Promise<any> {
+    // wait 15 seconds, 30 seconds, 60 seconds
+    const timeToWait = retries * 15000;
+    try {
+      // Make sure we don't wait on the first attempt
+      if (retries > 0) {
+        console.log(`waiting for ${timeToWait}ms...`);
+        await waitFor(timeToWait);
+      }
+      const x = await promise();
+      const reader = x.body!.pipeThrough(new TextDecoderStream()).getReader();
+
+      const {value} = await reader.read();
+      if (value) {
+        console.log(value);
+        return [reader, value];
+      } else {
+        throw new Error('done');
+      }
+
+    } catch (e) {
+      if (retries < maxRetries) {
+        onRetry(retries + 1, timeToWait);
+        return retryWithBackoff(retries + 1);
+      } else {
+        console.warn("Max retries reached. Bubbling the error up");
+        throw e;
+      }
+    }
+  }
+
+  return retryWithBackoff(0);
+}
 
 interface WorkoutFormProps {
   triggerScroll: () => void;
@@ -185,6 +227,8 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
     }));
   };
 
+  const [onError, setOnError] = useState(false);
+
   const { setAIData, } = useContext(AIDataContext);
   const [days, setDays] = useState<any[]>([]);
 
@@ -193,39 +237,51 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
   }, [days, setAIData]);
 
   const handleSubmit = async () => {
-    const spanLength = parseInt(formData.span); 
-    const initialDays = Array(spanLength).fill([]);
-    setDays(initialDays); 
 
-    triggerScroll();
-      
     try {
-        const response = await fetch("/api/createWorkout", {
+      const generateApiCall: () => Promise<Response> = async () => {
+        return await fetch("/api/createWorkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({formData}),
         });
+      };
 
-        const reader = response.body!.pipeThrough(new TextDecoderStream()).getReader();
-        let allData = '';
+        const [reader, value1] = await retry(
+          generateApiCall,
+          (retryAttempt: number, timeToWait: number) => {
+            // console.log("on retry called...");
+            console.log(`Waiting for ${timeToWait}ms before next attempt`);
+          },
+          4
+        );
+
+        const spanLength = parseInt(formData.span); 
+        const initialDays = Array(spanLength).fill([]);
+        setDays(initialDays); 
+    
+        triggerScroll();
+      
+        let allData = value1;
 
         let counter = -1;
 
         while (true) {
             const {value, done} = await reader.read();
             if (done) break;
+            console.log(value)
             allData += value;
             if (value.includes(']')) {  
               allData = allData.replace('|', '');
 
-              const parsed = parseStreamedJSON(allData);
+              const [parsed, extraData] = parseStreamedJSON(allData);
               setDays((prevDays) => {
                 const updatedDays = [...prevDays];
                 updatedDays[counter] = parsed;
                 return updatedDays;
               });
-
-              allData = '';
+              
+              allData = extraData;
               counter++;
 
             }
@@ -242,6 +298,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
         });
     } catch (error) {
         console.error(error);
+        setOnError(true);
     };
   };
 
@@ -303,6 +360,8 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
               DONE
             </div>
           </motion.button>
+
+      {onError && <div className={`flex flex-col justify-center items-center mt-20 ${libreBaskerville.className} text-red-500`}>Rate limit reached. Please try again later.</div>}
     </div>
   );
 };
