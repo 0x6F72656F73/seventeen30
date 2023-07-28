@@ -17,7 +17,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
     return (
     <div className='flex flex-row ml-[3vh] mb-[20vh]'>
         <div className="">
-                <Image src={img} alt="Rahul Datta" height={400} width={400}  style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
+                <Image src={img} alt="Rahul Datta" height={400} width={400} style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
 
         </div>
         <div className='flex flex-col ml-10'>
@@ -72,25 +72,25 @@ const About = () => (
             <MemberBio 
                 name='Rahul Datta'
                 sections={['Head Web Developer', 'Coded the backend of the website', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
-                img='/images/Rahul.jpg'
+                img='/images/Rahul4.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Sana Khan'
                 sections={['User Experience and Understanding', 'FAQ page, User Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
-                img='/images/Rahul.jpg'
+                img='/images/Sana.png'
                 borderColor="#D90368"
             />
             <MemberBio 
                 name='Jack Deutsch'
                 sections={['Prompt Engineer', 'Bridged the gap between the User and API', 'McLean, Virginia', 'CASPCA Website User Interface Designer']}
-                img='/images/Rahul.jpg'
+                img='/images/Jack.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Gina Kaiser'
                 sections={['User Interface Designer', 'Website Layout, Logo, and Flow', 'Burke, Virginia', 'Competitive Dancer at Buffas Dance Studio']}
-                img='/images/Rahul.jpg'
+                img='/images/Gina.png'
                 borderColor="#D90368"
             />
         </div>
