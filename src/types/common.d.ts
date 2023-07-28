@@ -4,8 +4,9 @@ export interface IColorVariants {
 
 export interface IWorkout {
     name: string;
-    reps: number;
     sets: number;
+    reps: number;
+    duration: number;
     rest: number;
 }
   

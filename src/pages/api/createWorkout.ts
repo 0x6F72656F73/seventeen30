@@ -36,8 +36,9 @@ const handler = async (req: NextRequest) => {
       Each exercise cannot be longer than 25 characters. The number of days is not related to the duration of each workout session.
       ONLY REPLY WITH THE LIST-FORMATTED WORKOUT PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.
       
-      Generate a list-formatted output which has length: ${formData.span}. Here is the type structure for one exercise:
-      type $Exercise = { "name": string, "reps": int, "sets": int, "rest": int }
+      Generate a list-formatted output which has length: ${formData.span}. If reps is a more accurate measurement than duration, set the duration to 0. Vice versa. The units for duration is minutes.
+      Here is the type structure for one exercise:
+      type $Exercise = { "name": string, "reps": int, "duration": int, "sets": int, "rest": int }
       
       Separate each list with a pipe and space on both sides. ONLY REPLY WITH THE LIST-FORMATTED WORKOUT PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.
       Example case (note $Exercise denotes the type above, not the actual exercise. DO NOT OUTPUT [$Exercise,$Exercise,Exercise]): 

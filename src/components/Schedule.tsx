@@ -57,7 +57,7 @@ const Day = ({dayNumber, workouts, conditionalMargin}: DayProps) => {
             <h1 className="text-5xl text-white mb-5">Day {parseInt(dayNumber) + 1 }</h1>
             {workouts && workouts.length > 0 ? (workouts.map((workout) => (
                 <Workout key={workout.name} name={workout.name} reps={workout.reps} sets={workout.sets} rest={workout.rest} />
-            ))) : ( 
+                <Workout key={workout.name} name={workout.name} reps={workout.reps} sets={workout.sets} rest={workout.rest} duration={workout.duration} />
                 <LoadingAnimation />
             )}
         </div>

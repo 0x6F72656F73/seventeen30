@@ -417,10 +417,10 @@ acorn@^8.9.0:
   resolved "https://registry.yarnpkg.com/acorn/-/acorn-8.10.0.tgz#8be5b3907a67221a81ab23c7889c4c5526b62ec5"
   integrity sha512-F0SAmZ8iUtS//m8DmCTA0jlh6TDKkHQyK6xc6V4KDTyZKA9dnvX9/3sRTVQrWm79glUAZbnmmNcdYwUIHWVybw==
 
-ai@^2.1.25:
-  version "2.1.25"
-  resolved "https://registry.yarnpkg.com/ai/-/ai-2.1.25.tgz#110986571431665216f99b7f221121ef36c017c3"
-  integrity sha512-CPGD/auacetvHbwt9TsnktOtc32A4S/5LT9/W+f1nZz9N1W1V5/WDEcr2jTglLVmvh8mXXFwLbKT/t9erly+Bg==
+ai@^2.1.27:
+  version "2.1.27"
+  resolved "https://registry.yarnpkg.com/ai/-/ai-2.1.27.tgz#8568f448225c49eebe5f961c8592a42f7de435e3"
+  integrity sha512-PvttKfrpO86ypG3OL6MO4rSvprto1buvwXH/Sfft7FI2DwUcR+rduaH3WmaIpJ6kv2PH+HrmM1zGW1cyU6XSKA==
   dependencies:
     eventsource-parser "1.0.0"
     nanoid "3.3.6"
