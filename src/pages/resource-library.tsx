@@ -9,10 +9,12 @@ interface SpotifyBoxProps {
 const SpotifyBox = ({playlistLink, playlistName}: SpotifyBoxProps) => {
     return (
         <div className='flex flex-col items-center'>
-            <Image src='/images/spotify.svg' alt='spotify logo' width={274.2} height={274.2} className='brightness-[1.03]' />
-            <div className='mt-[5vh] underline underline-offset-2 text-3xl text-center text-white '>
-                {playlistName}
-            </div>
+            <a href={playlistLink}  target='_blank' rel="noopener noreferrer" className='underline underline-offset-2 text-3xl text-center text-white hover:text-blue-600 '>
+                <Image src='/images/spotify.svg' alt='spotify logo' width={274.2} height={274.2} className='brightness-[1.03]' />
+                <div className='mt-[5vh]'>
+                    {playlistName}
+                </div>
+            </a>
         </div>
     )
 }
@@ -27,15 +29,15 @@ interface BlockBoxProps {
 const BlockBox = ({blockTitle, blockPoints, color}: BlockBoxProps) => {
     return (
         <div className='flex flex-col items-center text-center'>
-            <div className={`border-4 border-${color} p-8 min-w-[55vw]`}>
-                <div className={`text-4xl text-${color}`}>
+            <div className={`border-4 border-${color} p-8 min-w-[40em]`}>
+                <div className={`text-[2em] text-${color}`}>
                     {blockTitle}
                 </div>
-                <ul className='list-disc'>
+                <ul>
                     {Object.entries(blockPoints).map(([title, link], index) => {
                         return (
                             <div key={index} className='mt-[2vh] text-2xl'>
-                                <a href={link} className='underline underline-offset-2 text-white hover:text-blue-600' rel="noopener noreferrer">
+                                <a href={link} target='_blank' className='underline underline-offset-2 text-white hover:text-blue-600' rel="noopener noreferrer">
                                     {title}
                                 </a>
                             </div>
@@ -54,7 +56,7 @@ const ResourceLibrary = () => {
                     <div className={`text-10xl ${anton.className}`}>
                         Resource Library
                     </div>
- 
+
                 <div className={`flex flex-row items-center justify-center gap-x-40 mt-[5vh] ${libreBaskerville.className}`}>
                     <div className='flex flex-col items-center justify-items-center gap-y-20'>
                         <SpotifyBox playlistName={'Rap Workout Playlist'} playlistLink={'https://open.spotify.com/playlist/4mk1o6g93vy9e9DDOaapX3?si=0909dcf408e045c1'}/>
