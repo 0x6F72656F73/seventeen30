@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import Image from 'next/image'
 import { motion } from "framer-motion";
@@ -6,6 +7,7 @@ import { motion } from "framer-motion";
 import { libreBaskerville } from '@/utils/fonts';
 
 const Header = () => {
+    const router = useRouter();
     const [isHover, toggleHover] = useState(false);
 
     const toggleHoverMenu = () => {
@@ -84,12 +86,12 @@ const Header = () => {
                 </motion.div>
             </div>
 
-            <div className="xs:flex sm:hidden flex-row justify-center items-center w-screen">
-                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={200} height={200} className='-mt-40 ml-20' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+            <div className="xs:flex sm:hidden flex-row items-center">
+                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={200} height={200} className='h-auto -mt-80 ml-20' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
                 <motion.div
                     onClick={toggleHoverMenu}
-                    className="flex flex-col ml-10"
+                    className="flex flex-col ml-8"
                     >
                     <div className='flex flex-col items-center hover:text-gray-600 '>
                         <div className='-mb-5'>
@@ -98,7 +100,7 @@ const Header = () => {
                         <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
-                        className={`inline w-[6vh] h-20 ml-1 -mb-9 transition-transform duration-200 transform ${
+                        className={`inline w-20 h-20 ml-1 -mb-9 transition-transform duration-200 transform ${
                             isHover ? 'rotate-180' : 'rotate-0'
                         }`}
                         >
@@ -111,14 +113,17 @@ const Header = () => {
                     </div>
 
                     <motion.div
-                    className="flex flex-col mt-5"
+                    className="flex flex-col mt-8"
                     initial="exit"
                     animate={isHover ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
-                        <div className="flex flex-col gap-y-[2vh] justify-items-center items-center">
-                            <Link href="/FAQs" className='hover:text-gray-600'>FAQs</Link> 
-                            <Link href="/resource-library" className='hover:text-gray-600'>RESOURCE LIBRARY</Link>
+                        <div className="flex flex-col gap-y-[2vh] justify-items-center items-center text-center">
+                            <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-gray-600'}>HOME</Link>
+                            <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-gray-600'}>TUTORIAL</Link>
+                            <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-gray-600'}>ABOUT US</Link>
+                            <Link href="/FAQs" className={router.pathname === '/FAQs' ? 'text-bright-pink' : 'hover:text-gray-600'}>FAQs</Link> 
+                            <Link href="/resource-library" className={router.pathname === '/resource-library' ? 'text-bright-pink' : 'hover:text-gray-600'}>RESOURCE LIBRARY</Link>
                         </div>
                     </motion.div>
                 </motion.div>
