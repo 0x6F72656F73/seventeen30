@@ -5,6 +5,20 @@ module.exports = {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}'
     ],
   theme: {
+    screens: {
+       // default = mobile
+      'xs': '320px', // mobile
+
+      'sm': '480px', // tablet
+
+      'md': '768px', // small laptop
+
+      'lg': '1024px', // large laptop
+
+      'xl': '1200px', // desktop
+
+      '2xl': '1536px', // large desktop
+    },
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
@@ -31,5 +45,4 @@ module.exports = {
     },
 
   },
-  plugins: [],
 }
