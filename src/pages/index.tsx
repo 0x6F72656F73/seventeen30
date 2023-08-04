@@ -25,9 +25,13 @@ export default function Home() {
       <div className="min-h-screen flex flex-col items-center justify-center">
         <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" className="w-[70%] h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
-        <div className='min-w-[85%] min-h-[10vh] bg-bright-pink mt-[6%]'>
-          <div className={`py-[5vh] hollow-text text-center text-6xl ${anton.className}`}>
-            CREATE A PERSONALIZED WORKOUT PLAN WITH AI
+          <TypeIt
+            options={{
+              strings: ["CREATE A PERSONALIZED WORKOUT PLAN WITH AI BELOW... "],
+              speed: 50,
+              waitUntilVisible: true,
+            }}
+          />
           </div>
         </div>
       </div>
