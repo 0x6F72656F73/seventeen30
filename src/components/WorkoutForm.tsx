@@ -48,7 +48,7 @@ const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSe
   };
 
   return (
-      <div className='text-center text-white font-bold'>
+      <div className='text-center text-white font-bold mb-80'>
         <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
           {title}
         </div>
@@ -89,7 +89,7 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
   };
 
   return (
-    <div className='text-center text-white font-bold'>
+    <div className='text-center text-white font-bold mb-48'>
       <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
@@ -131,12 +131,12 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
 
 
   return (
-    <div className='text-center text-white font-bold'>
-      <div className={`flex items-center justify-center rounded-[40px]  w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+    <div className='text-center text-white font-bold -mt-36'>
+      <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
       <div>
-        <motion.input type='text' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
+        <motion.input type='text' placeholder='basketball' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
           value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}
           whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
       </div>
@@ -299,7 +299,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
 
   return (
     <div className="flex flex-col mt-[10vh]">
-      <div className={`grid lg:grid-cols-2 md:grid-cols-1 justify-items-center gap-y-[32vh] ${libreBaskerville.className}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 justify-items-center ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"
           color="bright-pink"
