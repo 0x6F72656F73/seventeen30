@@ -1,6 +1,14 @@
 import Image from 'next/image'
 
+import TypeIt from 'typeit-react';
+
 import { anton, libreBaskerville } from '@/utils/fonts';
+
+const MISSION_STATEMENT= [
+"In the past, individuals have required an expensive personal trainer to receive personalized workouts.",
+" However, <span style='color: #10e62c;'>Seventeen</span><span style='color: #d90368;'>30</span> aims to change that:",
+" our mission is to democratize fitness, giving users custom, professional-quality workout plans with the click of a button.",
+" By leveraging the power of generative AI, Seventeen 30 offers an unprecedented new approach to your exercise routine..."]
 
 interface MemberBioProps {
     name: string;
@@ -9,17 +17,17 @@ interface MemberBioProps {
     borderColor: string;
 };
 
-const headers = ['ROLE', 'PART', 'AREA', 'MORE']
+const headers = ['ROLE', 'AREA', 'MORE']
 const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
     const firstName = name.split(' ')[0];
     const lastName = name.split(' ')[1];
     
     return (
-    <div className='flex md:flex-col lg:flex-row ml-[3vh] mb-[20vh]'>
-        <Image src={img} alt="Rahul Datta" width={400} height={0} className='h-auto' style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
+    <div className='flex flex-col sm:flex-row place-items-center max-w-full'> 
+        <Image src={img} alt={name} width={300} height={0} className='h-auto' style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
 
-        <div className='flex flex-col ml-[10vh]'>
-            <div className={`flex flex-wrap gap-4 text-7xl mt-4 ${anton.className}`}>
+        <div className='flex flex-col place-items-center'>
+            <div className={`flex flex-wrap gap-4 text-7xl mt-12 ${anton.className}`}>
                 <div className='text-bright-green'>
                     {firstName}
                 </div>
@@ -27,7 +35,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
                     {lastName}
                 </div>
             </div>
-            <div className={`min-w-[55vh] mt-4 text-3xl ${libreBaskerville.className}`}>
+            <div className={`flex flex-col place-items-center min-w-[43rem] sm:min-w-[55rem] mt-4 text-3xl  whitespace-break-spaces ${libreBaskerville.className}`}>
                 {sections.map((section, index) => (
                     <div key={index} className='mb-10'>
                         {headers[index]}: {section}
@@ -40,9 +48,9 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
 )};
 
 const About = () => (
-    <div className="flex flex-col mt-[6%]">
+    <div className="flex flex-col">
         <div className='flex flex-col items-center'>
-            <div className={`flex flex-wrap gap-[2vh] text-10xl ${anton.className}`}>
+            <div className={`flex flex-wrap gap-8 text-8xl sm:text-10xl ${anton.className}`}>
                 <div className='text-bright-green'>
                     OUR
                 </div>
@@ -51,12 +59,20 @@ const About = () => (
                 </div>
             </div>
 
-            <div className={`text-center text-4xl mt-[3vh] pl-16 pr-16 ${libreBaskerville.className}`}>
-                In the past, individuals have required an expensive personal trainer to receive personalized workouts. 
-                However, Seventeen 30 aims to change that: our mission is to democratize fitness, giving users custom, professional-quality workout plans with the click of a button. By leveraging the power of generative AI, Seventeen 30 offers an unprecedented new approach to your exercise.
+            <div className={`text-center text-3xl sm:text-4xl mt-6 mx-8 ${libreBaskerville.className}`}>
+            <TypeIt
+                getBeforeInit={(instance) => {
+                    instance.type(MISSION_STATEMENT[0]).pause(2000).type(MISSION_STATEMENT[1]).pause(2000).type(MISSION_STATEMENT[2]).pause(2000).type(MISSION_STATEMENT[3]);
+                    return instance;
+                }}
+                options={{
+                    speed: 25,
+                    waitUntilVisible: true,
+                }}
+            />
             </div>
 
-            <div className={`flex flex-wrap gap-[2vh] mt-[15vh] text-10xl ${anton.className}`}>
+            <div className={`flex flex-wrap gap-8 mt-32 text-8xl ${anton.className}`}>
                 <div className='text-bright-green'>
                     THE
                 </div>
@@ -66,28 +82,28 @@ const About = () => (
             </div>
         </div>
 
-        <div className='grid grid-cols-1 mt-[10vh] justify-items-center'>
+        <div className='grid grid-cols-1 gap-y-20 justify-items-center mt-20 '>
             <MemberBio 
                 name='Rahul Datta'
-                sections={['Head Web Developer', 'Frontend and Backend Developer', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
+                sections={['Head Web Developer', 'Pleasanton, California', 'President of Tri-Valley Hacks']}
                 img='/images/Rahul4.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Sana Khan'
-                sections={['Solutions Architect and UX designer', 'FAQ, Tutorial, and Resource Library', 'Vestal, New York', 'Stem-e YDCP Team Leader']}
+                sections={['Product Designer','Vestal, New York', 'Stem-e YDCP Team Leader']}
                 img='/images/Sana.png'
                 borderColor="#D90368"
             />
             <MemberBio 
                 name='Jack Deutsch'
-                sections={['Prompt Engineer', 'Bridged the gap between the User and API', 'McLean, Virginia', 'CASPCA Website UI Designer']}
+                sections={['Prompt Engineer', 'McLean, Virginia', 'CASPCA Website UI Designer']}
                 img='/images/Jack.png'
                 borderColor="#10E62C"
             />
             <MemberBio 
                 name='Gina Kaiser'
-                sections={['Solutions Architect and UX designer', 'Website Layout, Logo, and Flow', 'Burke, Virginia', 'Competitive Dancer at Buffas Dance Studio']}
+                sections={['UI & UX designer', 'Burke, Virginia', 'Dancer at Buffas Dance Studio']}
                 img='/images/Gina.png'
                 borderColor="#D90368"
             />
