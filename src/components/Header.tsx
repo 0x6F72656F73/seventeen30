@@ -21,7 +21,6 @@ const Header = () => {
             transition: {
             duration: 0.5
             },
-            display: "block"
         },
         exit: {
             opacity: 0,
@@ -34,8 +33,8 @@ const Header = () => {
     };
 
     return (
-        <div className={`mt-16 mb-32 text-4xl text-white ${libreBaskerville.className}`}>
-            <div className="xs:hidden sm:flex flex-row justify-around">
+        <div className={`mt-16 mb-20 md:mb-32 text-white ${libreBaskerville.className}`}>
+            <div className="xs:hidden sm:flex text-4xl flex-row justify-around">
 
                 <div className='ml-[7vh] hover:text-gray-600'>
                     <Link href="/" >HOME</Link>
@@ -45,7 +44,7 @@ const Header = () => {
                     <Link href="/tutorial">TUTORIAL</Link>
                 </div>
 
-                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden xl:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden sm:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
                 
                 <div className='-mr-[10vh] whitespace-nowrap hover:text-gray-600'>
                     <Link href="/about">ABOUT US</Link>
@@ -73,7 +72,7 @@ const Header = () => {
                     </div>
 
                     <motion.div
-                    className="flex flex-col mt-[1vh]"
+                    className={`flex flex-col mt-[1vh] ${isHover ? "block" : "hidden"}`}
                     initial="exit"
                     animate={isHover ? "enter" : "exit"}
                     variants={subMenuAnimate}
@@ -86,8 +85,11 @@ const Header = () => {
                 </motion.div>
             </div>
 
-            <div className="xs:flex sm:hidden flex-row items-center">
-                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={200} height={200} className='h-auto -mt-80 ml-20' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+            <div className="xs:flex sm:hidden w-full text-2xl">
+                <div className="ml-20 w-60 h-20 outline-none">
+                    <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='h-auto w-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+
+                </div>
 
                 <motion.div
                     onClick={toggleHoverMenu}
@@ -113,12 +115,12 @@ const Header = () => {
                     </div>
 
                     <motion.div
-                    className="flex flex-col mt-8"
+                    className={`mt-8 ${isHover ? "block" : "hidden"}`}
                     initial="exit"
                     animate={isHover ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
-                        <div className="flex flex-col gap-y-[2vh] justify-items-center items-center text-center">
+                        <div className="flex flex-col gap-y-[2vh] text-center">
                             <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-gray-600'}>HOME</Link>
                             <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-gray-600'}>TUTORIAL</Link>
                             <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-gray-600'}>ABOUT US</Link>
