@@ -1,6 +1,9 @@
 import { useState, useRef } from 'react'
 import Image from 'next/image'
 
+import TypeIt from "typeit-react";
+
+
 import WorkoutForm from '@/components/WorkoutForm'
 import Schedule from '@/components/Schedule'
 import AIDataContext from '@/utils/AIDataContext';
@@ -22,9 +25,11 @@ export default function Home() {
 
   return (
     <main>
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="0" height="0" className="w-[70%] h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+      <div className="flex flex-col items-center justify-center mt-20 sm:min-h-screen">
+        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="250" height="0" className="h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
+        <div className='w-full sm:min-w-[85%] sm:min-h-[10vh] bg-bright-pink py-5 mt-10'>
+          <div className={`hollow-text-mobile text-center text-4xl sm:text-6xl ${anton.className}`}>
           <TypeIt
             options={{
               strings: ["CREATE A PERSONALIZED WORKOUT PLAN WITH AI BELOW... "],
@@ -36,7 +41,7 @@ export default function Home() {
         </div>
       </div>
 
-      <div className='mt-36'>
+      <div className='mt-10 sm:mt-36'>
         <div className={`text-center text-10xl hollow-text-2  ${anton.className}`}> {/*make text larger*/}
           8 STEPS
         </div>
