@@ -93,7 +93,7 @@ const Header = () => {
 
                 <motion.div
                     onClick={toggleHoverMenu}
-                    className="flex flex-col ml-8"
+                    className="flex flex-col ml-20"
                     >
                     <div className='flex flex-col items-center hover:text-gray-600 '>
                         <div className='-mb-5'>
@@ -120,7 +120,7 @@ const Header = () => {
                     animate={isHover ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
-                        <div className="flex flex-col gap-y-[2vh] text-center">
+                        <div className="flex flex-col gap-y-4 text-center">
                             <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-gray-600'}>HOME</Link>
                             <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-gray-600'}>TUTORIAL</Link>
                             <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-gray-600'}>ABOUT US</Link>

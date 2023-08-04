@@ -52,7 +52,7 @@ interface DayProps {
 
 const Day = ({dayNumber, workouts, conditionalMargin}: DayProps) => {
     return (
-        <div className={`border-4 border-bright-pink py-6 ${conditionalMargin} min-w-[45vh] text-center`}>
+        <div className={`border-4 border-bright-pink py-6 ${conditionalMargin} min-w-[25rem] text-center`}>
             <h1 className="text-5xl text-white mb-5">Day {parseInt(dayNumber) + 1 }</h1>
             {workouts && workouts.length > 0 ? (workouts.map((workout) => (
                 <Workout key={workout.name} name={workout.name} reps={workout.reps} sets={workout.sets} rest={workout.rest} duration={workout.duration} />
@@ -72,13 +72,10 @@ const Schedule = () => {
 
     return (
         <div>
-            <div className="flex flex-col items-center mt-[50vh]">
-                <div className={`text-9xl hollow-text-2 ${anton.className}`}>
+            <div className="flex flex-col items-center mt-44 text-center">
+                <div className={`hollow-text-2-mobile text-7xl sm:text-9xl ${anton.className}`}>
                     WORKOUT PLAN
                 </div>
-                {/* <div className={`mt-[5vh] text-4xl ${anton.className}`}>
-                    Your personalized workout plan
-                </div> */}
                 <div className={`mt-[1vh] mb-[10vh] text-2xl`}>
                     (If you don&apos;t like this workout plan click the submit button again to generate a new one!)
                 </div>

@@ -24,9 +24,21 @@ body {
   -webkit-text-stroke-color: rgb(var(--foreground-rgb));
 }
 
+.hollow-text-mobile {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 0.7px;
+  -webkit-text-stroke-color: rgb(var(--foreground-rgb));
+}
+
 .hollow-text-2 {
   -webkit-text-fill-color: transparent;
   -webkit-text-stroke-width: 5px;
+  -webkit-text-stroke-color: rgb(var(--foreground-rgb));
+}
+
+.hollow-text-2-mobile {
+  -webkit-text-fill-color: transparent;
+  -webkit-text-stroke-width: 2px;
   -webkit-text-stroke-color: rgb(var(--foreground-rgb));
 }
 
