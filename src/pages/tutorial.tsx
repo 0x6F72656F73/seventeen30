@@ -1,4 +1,5 @@
 import { getColorClassNames } from '@/components/WorkoutForm';
+
 import { anton, libreBaskerville } from '@/utils/fonts';
 
 interface InitialStepProps {
@@ -11,14 +12,13 @@ interface InitialStepProps {
 
 const InitialStep = ({stepNumber, stepName, color, place, description}: InitialStepProps) => {
     return (
-        <div className={`flex ${place === 'r' ? 'flex-row' : 'flex-row-reverse'} items-center mb-[8vh] ml-[3vh] mr-[3vh]`}>
-            <div className='font-bold text-center text-white text-4xl'>
-                <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh]  ${place === 'r' ? 'ml-[5vh]' : 'mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
+        <div className={`flex flex-col items-center ${place === 'r' ? 'sm:flex-row' : 'sm:flex-row-reverse'} mb-20`}>
+            <div className='font-bold text-center text-white text-4xl '>
+                <div className={`flex items-center justify-center rounded-[2rem] w-[40rem] h-20 mb-6 ${place === 'r' ? 'sm:ml-[5vh]' : 'sm:mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`${place === 'r' ? 'ml-[3vh]' : 'mr-[3vh]' } pl-16 pr-16 text-2xl lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}}>
-            </div>
+            <div className={`${place === 'r' ? 'sm:ml-[3vh]' : 'sm:mr-[3vh]' } text-2xl text-center lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}} />
         </div>
     )
 }
@@ -34,11 +34,11 @@ const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) =
     return (
         <div className={`flex flex-col items-center mb-[5vh] ml-[3vh] mr-[3vh]`}>
             <div className='text-center text-white font-bold text-4xl'>
-                <div className={`flex items-center justify-center rounded-[30px] w-[80vh] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
+                <div className={`flex items-center justify-center rounded-[30px] w-[40rem] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`mt-[3vh] pl-16 pr-16 text-2xl text-justify ${libreBaskerville.className}`}>
+            <div className={`mt-[3vh] text-2xl text-center ${libreBaskerville.className}`}>
                 {description}
             </div>
         </div>
@@ -50,9 +50,9 @@ const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) =
 
 const Tutorial = () => {
     return (
-        <div className="flex flex-col mt-[6%]">
+
             <div className='flex flex-col items-center'>
-                    <div className={`text-10xl ${anton.className} text-bright-green`}>
+                    <div className={`text-8xl ${anton.className} text-bright-green`}>
                         Tutorial
                     </div>
 
@@ -71,7 +71,6 @@ const Tutorial = () => {
                     <LaterStep stepNumber={'8'} stepName='SUBMIT' color={'bright-purple-2'} description='Click the submit button to generate your workout plan!' />
                 </div>
             </div>
-        </div>
     )
 }
 
