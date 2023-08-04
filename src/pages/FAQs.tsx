@@ -9,13 +9,13 @@ interface QAPairProps {
 
 const QAPair = ({question, answer, color}: QAPairProps) => {
     return (
-        <div className={`flex flex-col mb-[8vh] ml-[3vh] mr-[3vh]`}>
+        <div className={`flex flex-col mx-10`}>
             <div className='text-center text-white'>
-                <div className={`flex w-max-content ml-[5vh] p-4 ${getColorClassNames(color)[4]} text-5xl font-bold`}>
+                <div className={`flex w-max-content mx-4 ${getColorClassNames(color)[4]} text-5xl font-bold`}>
                     {question}
                 </div>
             </div>
-            <div className={`items-center mt-[3vh] ml-[20vh] pl-16 pr-16 text-3xl text-justify font-bold opacity-80`} dangerouslySetInnerHTML={{__html: answer}}>
+            <div className={`items-center mt-5 text-3xl text-center sm:text-justify font-bold`} dangerouslySetInnerHTML={{__html: answer}}>
             </div>
         </div>
     )
@@ -23,13 +23,13 @@ const QAPair = ({question, answer, color}: QAPairProps) => {
 
 const FAQs = () => {
     return (
-        <div className="flex flex-col mt-[6%]">
+        <div className="flex flex-col">
             <div className='flex flex-col items-center'>
-                    <div className={`text-10xl ${anton.className} text-bright-pink`}>
+                    <div className={`text-8xl tsm:text-10xl ${anton.className} text-bright-pink`}>
                         FAQs
                     </div>
 
-                <div className={`mt-[6vh] ${libreBaskerville.className}`}>
+                <div className={`flex flex-col gap-y-20 mt-16 ${libreBaskerville.className}`}>
                     <QAPair question={'What is the best plan for me?'}
                     answer={'The best plan for you will fit into your lifestyle, it depends on your specific fitness goals, commitment level, and personal preferences. If you are looking for a quick workout to boost your energy or enhance your mood, the 1-Day Plan is great for you. Alternatively, for those seeking a moderate commitment level, the 7-day plan is ideal. A 30-Day Plan will work best for individuals seeking significant fitness improvement and long-term results, providing ample time to establish a consistent routine.'}
                     color='bright-green' />
