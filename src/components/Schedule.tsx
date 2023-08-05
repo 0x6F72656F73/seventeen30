@@ -73,19 +73,19 @@ const Schedule = () => {
     return (
         <div>
             <div className="flex flex-col items-center mt-44 text-center">
-                <div className={`hollow-text-2-mobile text-7xl sm:text-9xl ${anton.className}`}>
+                <div className={`hollow-text-2-mobile text-7xl md:text-9xl ${anton.className}`}>
                     WORKOUT PLAN
                 </div>
-                <div className={`mt-[1vh] mb-[10vh] text-2xl`}>
+                <div className={`mt-4 mb-32 text-2xl`}>
                     (If you don&apos;t like this workout plan click the submit button again to generate a new one!)
                 </div>
                 {Object.keys(AIData).length === 1 && (
-                    <div className="w-[40vh]">
+                    <div>
                         <Day key={'0'} dayNumber={'0'} workouts={AIData['0']} conditionalMargin={''}/>
                     </div>
                     )}
                 {Object.keys(AIData).length > 1 && (
-                    <div className="grid lg:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 justify-items-center">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center">
                         {
                             Object.keys(AIData).map((dayNumber) => (
                                 <Day key={dayNumber} dayNumber={dayNumber} workouts={AIData[dayNumber]}

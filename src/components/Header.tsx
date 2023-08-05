@@ -34,32 +34,51 @@ const Header = () => {
 
     return (
         <div className={`mt-16 mb-20 md:mb-32 text-white ${libreBaskerville.className}`}>
-            <div className="xs:hidden sm:flex text-4xl flex-row justify-around">
+            <div className='xs:hidden md:hidden flex-row justify-around text-4xl'>
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/">HOME</Link>
+                </div>
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/tutorial">TUTORIAL</Link>
+                </div>
+                <div className="ml-20 md:w-[20rem] lg:w-[40rem] outline-none">
+                    <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='w-auto h-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+                </div>
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/about">ABOUT US</Link>
+                </div>
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/">MORE</Link>
+                </div>
+            </div>
+            <div className="xs:hidden md:flex text-4xl flex-row justify-around">
 
-                <div className='ml-[7vh] hover:text-bright-green-300'>
+                <div className='hover:text-bright-green-300'>
                     <Link href="/" >HOME</Link>
                 </div>
 
                 <div className='hover:text-bright-green-300'>
                     <Link href="/tutorial">TUTORIAL</Link>
                 </div>
-
-                <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden sm:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
                 
-                <div className='-mr-[10vh] whitespace-nowrap hover:text-bright-green-300'>
+                <div className="md:w-[20rem] lg:w-[40rem] outline-none">
+                    <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='w-auto h-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+                </div>
+                
+                <div className='whitespace-nowrap hover:text-bright-green-300'>
                     <Link href="/about">ABOUT US</Link>
                 </div>
 
                 <motion.div
                 onClick={toggleHoverMenu}
-                className="flex flex-col justify-items-center items-center -mr-[10vh]"
+                className="flex flex-col justify-items-center items-center"
                 >
                     <div className='flex flex-row hover:text-bright-green-300'>
                         <div>MORE</div>
                         <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
-                        className={`inline w-[6vh] h-[8vh] ml-1  2xl:-mt-[1.5vw] xl:-mt-[1.5vw] lg:-mt-[3.5vw] md:-mt-[4.5vw] -mt-[5.5vw] transition-transform duration-200 transform ${
+                        className={`inline w-[6vh] h-[8vh] -mt-8 transition-transform duration-200 transform ${
                             isToggle ? 'rotate-180' : 'rotate-0'
                         }`}
                         >
@@ -77,7 +96,7 @@ const Header = () => {
                     animate={isToggle ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
-                        <div className="flex flex-col gap-y-[2vh] justify-items-center items-center">
+                        <div className="flex flex-col gap-y-[2vh] w-[5rem] text-center items-center">
                             <Link href="/FAQs" className='hover:text-bright-green-300'>FAQs</Link> 
                             <Link href="/resource-library" className='hover:text-bright-green-300'>RESOURCE LIBRARY</Link>
                         </div>
@@ -85,18 +104,17 @@ const Header = () => {
                 </motion.div>
             </div>
 
-            <div className="xs:flex sm:hidden text-2xl">
-                <div className="ml-20 w-60 h-20 outline-none">
+            <div className="xs:flex md:hidden flex-row justify-around text-2xl">
+                <div className="w-[23rem] sm:w-[35rem]  h-20 outline-none">
                     <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='h-auto w-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
-
                 </div>
 
                 <motion.div
                     onClick={toggleHoverMenu}
-                    className="flex flex-col ml-20"
+                    className="flex flex-col"
                     >
                     <div className='flex flex-col items-center hover:text-bright-green-300 '>
-                        <div className={`${isToggle ? "text-bright-green" : ""} -mb-5`}>
+                        <div className={`${isToggle ? "text-bright-green" : ""} mt-2 -mb-5 text-5xl`}>
                             MENU
                         </div>
                         <svg

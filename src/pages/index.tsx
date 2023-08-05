@@ -26,9 +26,9 @@ export default function Home() {
   return (
     <main>
       <div className="flex flex-col items-center justify-center mt-20 sm:min-h-screen">
-        <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="250" height="0" className="h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
+        {/* <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="250" height="0" className="h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/> */}
 
-        <div className='w-full sm:min-w-[85%] sm:min-h-[10vh] bg-bright-pink py-5 mt-10'>
+        <div className='flex items-center justify-center w-full h-[8rem] bg-bright-pink py-5 mt-10'>
           <div className={`hollow-text-mobile text-center text-4xl sm:text-6xl ${anton.className}`}>
           <TypeIt
             options={{

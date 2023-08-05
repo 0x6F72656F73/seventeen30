@@ -23,7 +23,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
     const lastName = name.split(' ')[1];
     
     return (
-    <div className='flex flex-col sm:flex-row place-items-center max-w-full'> 
+    <div className='flex flex-col md:flex-row place-items-center max-w-full'> 
         <Image src={img} alt={name} width={300} height={0} className='h-auto' style={{ borderRadius: '50%', border: `4px solid ${borderColor}`}} />
 
         <div className='flex flex-col place-items-center'>
@@ -35,7 +35,7 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
                     {lastName}
                 </div>
             </div>
-            <div className={`flex flex-col place-items-center min-w-[43rem] sm:min-w-[55rem] mt-4 text-3xl  whitespace-break-spaces ${libreBaskerville.className}`}>
+            <div className={`flex flex-col place-items-center min-w-[43rem] md:min-w-[55rem] mt-4 text-3xl  whitespace-break-spaces ${libreBaskerville.className}`}>
                 {sections.map((section, index) => (
                     <div key={index} className='mb-10'>
                         {headers[index]}: {section}
@@ -48,9 +48,9 @@ const MemberBio = ({ name, sections, img, borderColor }: MemberBioProps) => {
 )};
 
 const About = () => (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-[10rem]">
         <div className='flex flex-col items-center'>
-            <div className={`flex flex-wrap gap-8 text-8xl sm:text-10xl ${anton.className}`}>
+            <div className={`flex flex-wrap gap-8 text-8xl md:text-10xl ${anton.className}`}>
                 <div className='text-bright-green'>
                     OUR
                 </div>
@@ -72,7 +72,7 @@ const About = () => (
             />
             </div>
 
-            <div className={`flex flex-wrap gap-8 mt-32 text-8xl ${anton.className}`}>
+            <div className={`flex flex-wrap gap-8 mt-32 text-8xl md:text-10xl ${anton.className}`}>
                 <div className='text-bright-green'>
                     THE
                 </div>

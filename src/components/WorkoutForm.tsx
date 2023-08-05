@@ -48,19 +48,19 @@ const DropdownSelect = ({ title, color, fields, onFieldValueChange }: DropdownSe
   };
 
   return (
-      <div className='text-center text-white font-bold mb-80'>
-        <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+      <div className='text-center text-white font-bold mb-20'>
+        <div className={`flex items-center justify-center rounded-[4rem] w-[42rem] h-[8rem] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
           {title}
         </div>
-        <div className="w-[50vh] h-[10vh] my-[2vh] text-3xl">
+        <div className="my-[2rem] text-3xl">
         {fields.map((field) => (
           <motion.div
             key={field}
             onClick={() => handleFieldValueChange(field)}
-            className={`cursor-pointer mb-[2vh] border-8 rounded-[30px] ${getColorClassNames(color)[2]}`}
+            className={`cursor-pointer mb-5 border-8 rounded-[3rem] ${getColorClassNames(color)[2]}`}
             whileHover={{ scale: 1.2, backgroundColor: getColorClassNames(color)[0], transition: { duration: .5 } }}
           >
-            <div className={`p-5 ${selectedField === field ? `${getColorClassNames(color)[1]} rounded-[10px]` : ''}`}>
+            <div className={`p-5 ${selectedField === field ? `${getColorClassNames(color)[1]} rounded-[1rem]` : ''}`}>
               {field}
             </div>
           </motion.div>
@@ -90,15 +90,15 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
 
   return (
     <div className='text-center text-white font-bold mb-48'>
-      <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+      <div className={`flex items-center justify-center rounded-[4rem] w-[42rem] h-[8rem] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
-      <div className="w-[50vh] h-[10vh] my-4 text-xl">
+      <div className="w-[42rem] h-[8rem] mt-1 text-xl">
         <motion.input type="range" min={min} max={max} step="1"
           value={selectedValue}  onChange={(event) => handleValueChange(event.target.value)}
           className={`w-full mt-7 appearance-none bg-transparent [&::-webkit-slider-runnable-track]:rounded-full
           ${getColorClassNames(color)[4]} [&::-webkit-slider-thumb]:appearance-none
-          [&::-webkit-slider-thumb]:h-[50px] [&::-webkit-slider-thumb]:w-[50px] 
+          [&::-webkit-slider-thumb]:h-[5rem] [&::-webkit-slider-thumb]:w-[5rem] 
           [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-white`}
           whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
 
@@ -132,11 +132,11 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
 
   return (
     <div className='text-center text-white font-bold -mt-36'>
-      <div className={`flex items-center justify-center rounded-[40px] w-[50vh] h-[10vh] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
+      <div className={`flex items-center justify-center rounded-[4rem] w-[42rem] h-[8rem] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
         {title}
       </div>
       <div>
-        <motion.input type='text' placeholder='Type sport here (optional)' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
+        <motion.input type='text' placeholder='Type sport here (optional)' className="bg-transparent rounded-[4rem] w-[42rem] h-[5rem] border-4 mt-8 text-4xl text-center"
           value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}
           whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
       </div>
@@ -298,7 +298,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
   };
 
   return (
-    <div className="flex flex-col mt-[10vh]">
+    <div className="flex flex-col mt-32">
       <div className={`grid grid-cols-1 md:grid-cols-2 justify-items-center ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"
@@ -347,7 +347,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
         />
       </div>
       <motion.button
-            className={`flex items-center mt-[20vh] mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
+            className={`flex items-center mt-64 mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
             onClick={() => handleSubmit()}
             whileHover={{ scale: 1.2, backgroundColor: "#5E1474", transition: { duration: .5 } }}
           >
