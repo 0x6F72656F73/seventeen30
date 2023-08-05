@@ -8,10 +8,10 @@ import { libreBaskerville } from '@/utils/fonts';
 
 const Header = () => {
     const router = useRouter();
-    const [isHover, toggleHover] = useState(false);
+    const [isToggle, toggleHover] = useState(false);
 
     const toggleHoverMenu = () => {
-        toggleHover(!isHover);
+        toggleHover(!isToggle);
     };
 
     const subMenuAnimate = {
@@ -36,17 +36,17 @@ const Header = () => {
         <div className={`mt-16 mb-20 md:mb-32 text-white ${libreBaskerville.className}`}>
             <div className="xs:hidden sm:flex text-4xl flex-row justify-around">
 
-                <div className='ml-[7vh] hover:text-gray-600'>
+                <div className='ml-[7vh] hover:text-bright-green-300'>
                     <Link href="/" >HOME</Link>
                 </div>
 
-                <div className='hover:text-gray-600'>
+                <div className='hover:text-bright-green-300'>
                     <Link href="/tutorial">TUTORIAL</Link>
                 </div>
 
                 <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="300" height="0" sizes="200vw" className="hidden sm:flex h-auto 2xl:-mt-[9vh] md:-mt-[10vh] -mt-[13vh]" placeholder="blur" blurDataURL="images/seventeen30.svg"/>
                 
-                <div className='-mr-[10vh] whitespace-nowrap hover:text-gray-600'>
+                <div className='-mr-[10vh] whitespace-nowrap hover:text-bright-green-300'>
                     <Link href="/about">ABOUT US</Link>
                 </div>
 
@@ -54,13 +54,13 @@ const Header = () => {
                 onClick={toggleHoverMenu}
                 className="flex flex-col justify-items-center items-center -mr-[10vh]"
                 >
-                    <div className='flex flex-row hover:text-gray-600'>
+                    <div className='flex flex-row hover:text-bright-green-300'>
                         <div>MORE</div>
                         <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         className={`inline w-[6vh] h-[8vh] ml-1  2xl:-mt-[1.5vw] xl:-mt-[1.5vw] lg:-mt-[3.5vw] md:-mt-[4.5vw] -mt-[5.5vw] transition-transform duration-200 transform ${
-                            isHover ? 'rotate-180' : 'rotate-0'
+                            isToggle ? 'rotate-180' : 'rotate-0'
                         }`}
                         >
                             <path
@@ -72,20 +72,20 @@ const Header = () => {
                     </div>
 
                     <motion.div
-                    className={`flex flex-col mt-[1vh] ${isHover ? "block" : "hidden"}`}
+                    className={`flex flex-col mt-[1vh] ${isToggle ? "block" : "hidden"}`}
                     initial="exit"
-                    animate={isHover ? "enter" : "exit"}
+                    animate={isToggle ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
                         <div className="flex flex-col gap-y-[2vh] justify-items-center items-center">
-                            <Link href="/FAQs" className='hover:text-gray-600'>FAQs</Link> 
-                            <Link href="/resource-library" className='hover:text-gray-600'>RESOURCE LIBRARY</Link>
+                            <Link href="/FAQs" className='hover:text-bright-green-300'>FAQs</Link> 
+                            <Link href="/resource-library" className='hover:text-bright-green-300'>RESOURCE LIBRARY</Link>
                         </div>
                     </motion.div>
                 </motion.div>
             </div>
 
-            <div className="xs:flex sm:hidden w-full text-2xl">
+            <div className="xs:flex sm:hidden text-2xl">
                 <div className="ml-20 w-60 h-20 outline-none">
                     <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='h-auto w-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
 
@@ -95,15 +95,15 @@ const Header = () => {
                     onClick={toggleHoverMenu}
                     className="flex flex-col ml-20"
                     >
-                    <div className='flex flex-col items-center hover:text-gray-600 '>
-                        <div className='-mb-5'>
+                    <div className='flex flex-col items-center hover:text-bright-green-300 '>
+                        <div className={`${isToggle ? "text-bright-green" : ""} -mb-5`}>
                             MENU
                         </div>
                         <svg
                         fill="currentColor"
                         viewBox="0 0 20 20"
                         className={`inline w-20 h-20 ml-1 -mb-9 transition-transform duration-200 transform ${
-                            isHover ? 'rotate-180' : 'rotate-0'
+                            isToggle ? 'rotate-180' : 'rotate-0'
                         }`}
                         >
                             <path
@@ -115,17 +115,17 @@ const Header = () => {
                     </div>
 
                     <motion.div
-                    className={`mt-8 ${isHover ? "block" : "hidden"}`}
+                    className={`mt-8 ${isToggle ? "block" : "hidden"}`}
                     initial="exit"
-                    animate={isHover ? "enter" : "exit"}
+                    animate={isToggle ? "enter" : "exit"}
                     variants={subMenuAnimate}
                     >
                         <div className="flex flex-col gap-y-4 text-center">
-                            <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-gray-600'}>HOME</Link>
-                            <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-gray-600'}>TUTORIAL</Link>
-                            <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-gray-600'}>ABOUT US</Link>
-                            <Link href="/FAQs" className={router.pathname === '/FAQs' ? 'text-bright-pink' : 'hover:text-gray-600'}>FAQs</Link> 
-                            <Link href="/resource-library" className={router.pathname === '/resource-library' ? 'text-bright-pink' : 'hover:text-gray-600'}>RESOURCE LIBRARY</Link>
+                            <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-bright-green-300'}>HOME</Link>
+                            <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-bright-green-300'}>TUTORIAL</Link>
+                            <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>ABOUT US</Link>
+                            <Link href="/FAQs" className={router.pathname === '/FAQs' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>FAQs</Link> 
+                            <Link href="/resource-library" className={router.pathname === '/resource-library' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>RESOURCE LIBRARY</Link>
                         </div>
                     </motion.div>
                 </motion.div>

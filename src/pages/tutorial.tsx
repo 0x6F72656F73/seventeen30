@@ -14,11 +14,11 @@ const InitialStep = ({stepNumber, stepName, color, place, description}: InitialS
     return (
         <div className={`flex flex-col items-center ${place === 'r' ? 'sm:flex-row' : 'sm:flex-row-reverse'} mb-20`}>
             <div className='font-bold text-center text-white text-4xl '>
-                <div className={`flex items-center justify-center rounded-[2rem] w-[40rem] h-20 mb-6 ${place === 'r' ? 'sm:ml-[5vh]' : 'sm:mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
+                <div className={`flex items-center justify-center rounded-[2rem] w-[40rem] h-20  ${place === 'r' ? 'sm:ml-[5vh]' : 'sm:mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`${place === 'r' ? 'sm:ml-[3vh]' : 'sm:mr-[3vh]' } text-2xl text-center lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}} />
+            <div className={`${place === 'r' ? 'sm:ml-[3vh]' : 'sm:mr-[3vh]' } mx-10 mt-3 text-2xl text-center lg:text-left xl:text-justify ${libreBaskerville.className}`} dangerouslySetInnerHTML={{__html: description}} />
         </div>
     )
 }
@@ -32,13 +32,13 @@ interface LaterStepProps {
 
 const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) => {
     return (
-        <div className={`flex flex-col items-center mb-[5vh] ml-[3vh] mr-[3vh]`}>
+        <div className={`flex flex-col items-center mb-10`}>
             <div className='text-center text-white font-bold text-4xl'>
                 <div className={`flex items-center justify-center rounded-[30px] w-[40rem] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
-            <div className={`mt-[3vh] text-2xl text-center ${libreBaskerville.className}`}>
+            <div className={`mt-3 text-2xl text-center ${libreBaskerville.className}`}>
                 {description}
             </div>
         </div>
@@ -56,7 +56,7 @@ const Tutorial = () => {
                         Tutorial
                     </div>
 
-                <div className={`mt-[6vh] ${libreBaskerville.className}`}>
+                <div className={`mt-[6vh] mx-7 ${libreBaskerville.className}`}>
                     <InitialStep stepNumber={'1'} stepName='TIME' color={'bright-pink'} place={'r'} description='Consider how long you would like your program to be, specifically how much of a commitment you are willing to take on.
                     Refer to the <a href="/FAQs" class="underline underline-offset-2"> FAQs page</a> for a response on how to choose the best plan according to your needs and lifestyle.' />
                     <InitialStep stepNumber={'2'} stepName='LEVEL' color={'bright-green'} place={'l'} description='Beginners should pick the beginner level to lay good foundations, while those with some fitness background can choose the intermediate level for moderate intensity. 
