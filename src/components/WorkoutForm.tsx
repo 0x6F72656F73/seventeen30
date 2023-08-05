@@ -136,7 +136,7 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
         {title}
       </div>
       <div>
-        <motion.input type='text' placeholder='basketball' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
+        <motion.input type='text' placeholder='Type sport here (optional)' className="bg-transparent rounded-[40px] w-[50vh] h-[50px] border-4 mt-8 text-4xl text-center"
           value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}
           whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
       </div>

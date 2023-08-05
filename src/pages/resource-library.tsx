@@ -53,7 +53,7 @@ const ResourceLibrary = () => {
     return (
         <div className="flex flex-col"> 
             <div className='flex flex-col items-center'>
-                    <div className={`text-8xl sm:text-10xl ${anton.className}`}>
+                    <div className={`text-center text-8xl sm:text-10xl text-bright-pink ${anton.className}`}>
                         Resource Library
                     </div>
 

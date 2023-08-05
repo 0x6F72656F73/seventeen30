@@ -14,7 +14,7 @@ const InitialStep = ({stepNumber, stepName, color, place, description}: InitialS
     return (
         <div className={`flex flex-col items-center ${place === 'r' ? 'sm:flex-row' : 'sm:flex-row-reverse'} mb-20`}>
             <div className='font-bold text-center text-white text-4xl '>
-                <div className={`flex items-center justify-center rounded-[2rem] w-[40rem] h-20  ${place === 'r' ? 'sm:ml-[5vh]' : 'sm:mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
+                <div className={`flex items-center justify-center rounded-[2rem] w-[36rem] h-20  ${place === 'r' ? 'sm:ml-[5vh]' : 'sm:mr-[5vh]' } p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
@@ -34,7 +34,7 @@ const LaterStep = ({stepNumber, stepName, color, description}: LaterStepProps) =
     return (
         <div className={`flex flex-col items-center mb-10`}>
             <div className='text-center text-white font-bold text-4xl'>
-                <div className={`flex items-center justify-center rounded-[30px] w-[40rem] h-[6vh] p-4 ${getColorClassNames(color)[1]}`}>
+                <div className={`flex items-center justify-center rounded-[2rem] w-[36rem] h-20 p-4 ${getColorClassNames(color)[1]}`}>
                     STEP {stepNumber}: {stepName}
                 </div>
             </div>
