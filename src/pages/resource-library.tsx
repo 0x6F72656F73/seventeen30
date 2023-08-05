@@ -9,9 +9,9 @@ interface SpotifyBoxProps {
 const SpotifyBox = ({playlistLink, playlistName}: SpotifyBoxProps) => {
     return (
         <div className='flex flex-col items-center'>
-            <a href={playlistLink}  target='_blank' rel="noopener noreferrer" className='underline underline-offset-2 text-3xl text-center text-white hover:text-blue-600 '>
-                <Image src='/images/spotify.svg' alt='spotify logo' width={274.2} height={274.2} className='brightness-[1.03]' />
-                <div className='mt-[5vh]'>
+            <a href={playlistLink}  target='_blank' rel="noopener noreferrer" className='underline underline-offset-2 text-white hover:text-blue-600 '>
+                <Image src='/images/spotify.svg' alt='spotify logo' width={250} height={250} className='brightness-[1.03]' />
+                <div className='mt-8 text-4xl text-center'>
                     {playlistName}
                 </div>
             </a>
@@ -29,14 +29,14 @@ interface BlockBoxProps {
 const BlockBox = ({blockTitle, blockPoints, color}: BlockBoxProps) => {
     return (
         <div className='flex flex-col items-center text-center'>
-            <div className={`border-4 border-${color} p-8 min-w-[40em]`}>
-                <div className={`text-[2em] text-${color}`}>
+            <div className={`border-4 border-${color} p-8 min-w-[35rem] sm:min-w-[50rem]`}>
+                <div className={`text-2xl sm:text-4xl text-${color}`}>
                     {blockTitle}
                 </div>
                 <ul>
                     {Object.entries(blockPoints).map(([title, link], index) => {
                         return (
-                            <div key={index} className='mt-[2vh] text-2xl'>
+                            <div key={index} className='mt-6 text-xl'>
                                 <a href={link} target='_blank' className='underline underline-offset-2 text-white hover:text-blue-600' rel="noopener noreferrer">
                                     {title}
                                 </a>
@@ -51,13 +51,13 @@ const BlockBox = ({blockTitle, blockPoints, color}: BlockBoxProps) => {
 
 const ResourceLibrary = () => {
     return (
-        <div className="flex flex-col mt-[6%]">
+        <div className="flex flex-col"> 
             <div className='flex flex-col items-center'>
-                    <div className={`text-10xl ${anton.className}`}>
+                    <div className={`text-8xl sm:text-10xl ${anton.className}`}>
                         Resource Library
                     </div>
 
-                <div className={`flex flex-row items-center justify-center gap-x-40 mt-[5vh] ${libreBaskerville.className}`}>
+                <div className={`flex flex-col sm:flex-row items-center justify-center gap-y-40 sm:gap-40 mt-32 ${libreBaskerville.className}`}>
                     <div className='flex flex-col items-center justify-items-center gap-y-20'>
                         <SpotifyBox playlistName={'Rap Workout Playlist'} playlistLink={'https://open.spotify.com/playlist/4mk1o6g93vy9e9DDOaapX3?si=0909dcf408e045c1'}/>
                         <SpotifyBox playlistName={'Pop Workout Playlist'} playlistLink={'https://open.spotify.com/playlist/4mk1o6g93vy9e9DDOaapX3?si=fOWeIzR2Qs2nEDAO8tvk6A'}/>
