@@ -1,4 +1,4 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useSchedule } from '@/hooks/useSchedule';
 import Image from 'next/image'
 

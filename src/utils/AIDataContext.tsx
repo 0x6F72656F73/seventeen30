@@ -1,11 +1,11 @@
 import { createContext } from 'react';
 
-import { IExerciseList } from '@/types/common'
+import { IExerciseList, IMealList } from '@/types/common'
 
 interface IAIDataContext {
-    AIData: IExerciseList | undefined;
-    setAIData: (AIData: IExerciseList) => void;
-    }
+    AIData: IExerciseList | IMealList | undefined;
+    setAIData: (AIData: IExerciseList | IMealList) => void;
+}
 
 const AIDataContext = createContext<IAIDataContext>({
     AIData: {},

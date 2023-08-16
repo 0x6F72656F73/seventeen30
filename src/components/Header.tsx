@@ -41,6 +41,9 @@ const Header = () => {
                 <div className='hover:text-bright-green-300'>
                     <Link href="/tutorial">TUTORIAL</Link>
                 </div>
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/meal-planner">MEAL PLANNER</Link>
+                </div>
                 <div className="ml-20 md:w-[20rem] lg:w-[40rem] outline-none">
                     <Image src="images/seventeen30.svg" alt="Hero" priority={true} width={0} height={0} className='w-auto h-auto' placeholder="blur" blurDataURL="images/seventeen30.svg"/>
                 </div>
@@ -59,6 +62,10 @@ const Header = () => {
 
                 <div className='hover:text-bright-green-300'>
                     <Link href="/tutorial">TUTORIAL</Link>
+                </div>
+                
+                <div className='hover:text-bright-green-300'>
+                    <Link href="/meal-planner">MEAL PLANNER</Link>
                 </div>
                 
                 <div className="md:w-[20rem] lg:w-[40rem] outline-none">
@@ -141,6 +148,7 @@ const Header = () => {
                         <div className="flex flex-col gap-y-4 text-center">
                             <Link href="/" className={router.pathname === '/' ? 'text-bright-pink ' : 'hover:text-bright-green-300'}>HOME</Link>
                             <Link href="/tutorial" className={router.pathname === '/tutorial' ? 'text-bright-pink ' : 'hover:text-bright-green-300'}>TUTORIAL</Link>
+                            <Link href="/meal-planner" className={router.pathname === '/meal-planner' ? 'text-bright-pink ' : 'hover:text-bright-green-300'}>MEAL PLANNER</Link>
                             <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>ABOUT US</Link>
                             <Link href="/FAQs" className={router.pathname === '/FAQs' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>FAQs</Link> 
                             <Link href="/resource-library" className={router.pathname === '/resource-library' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>RESOURCE LIBRARY</Link>
