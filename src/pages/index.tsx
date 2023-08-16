@@ -1,4 +1,5 @@
 import { useState, useRef } from 'react'
+import { useSchedule } from '@/hooks/useSchedule';
 import Image from 'next/image'
 
 import TypeIt from "typeit-react";
@@ -13,15 +14,7 @@ import { anton } from '@/utils/fonts';
 
 export default function Home() {
   const [AIData, setAIData] = useState<IExerciseList>();
-  const scheduleRef = useRef<HTMLDivElement>(null);
-
-  const triggerScroll = () => {
-    setTimeout(() => {
-      if (scheduleRef.current) {
-      scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 1);
-  };
+  const {scheduleRef, triggerScroll} = useSchedule();
 
   return (
     <main>
