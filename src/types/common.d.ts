@@ -17,9 +17,9 @@ export interface IExerciseList {
 export interface IMeal {
     name: string;
     calories: number;
-    protein: number;
-    carbs: number;
-    fat: number;
+    // protein: number;
+    // carbs: number;
+    // fat: number;
 }
 
 export interface IMealList {

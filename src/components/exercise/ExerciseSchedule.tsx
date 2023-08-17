@@ -1,7 +1,7 @@
 import { useContext } from "react";
-import { motion, Transition } from "framer-motion";
 
-import AIDataContext from "@/utils/AIDataContext";
+import LoadingAnimation from "@/components/LoadingAnimation";
+import { ExerciseDataContext } from "@/utils/AIDataContext";
 
 import { IWorkout } from "@/types/common";
 import { anton } from "@/utils/fonts";
@@ -18,31 +18,6 @@ const Workout = ({name, reps, sets, rest, duration}: IWorkout) => {
         </div>
     )
 }
-
-
-const dotTransition: Transition = { duration: 0.75, repeat: Infinity, ease: "easeInOut", repeatType: "reverse" };
-
-export const LoadingAnimation = () => {
-  return (
-      <div className="pt-20 w-full flex items-center justify-center">
-      <motion.div
-          className="flex w-40 h-20 justify-around"
-          variants={{ initial: { transition: { staggerChildren: 0.2 } }, animate: { transition: { staggerChildren: 0.2 } } }}
-          initial="initial"
-          animate="animate"
-      >
-        {[...Array(3)].map((_, i) => (
-          <motion.div
-            key={i}
-            className="m-2 block w-8 h-8 bg-white rounded-full"
-            variants={{ initial: { y: "0%" }, animate: { y: "100%" } }}
-            transition={dotTransition}
-          />
-      ))}
-      </motion.div>
-      </div>
-  );
-};
 
 interface DayProps {
     dayNumber: string;
@@ -63,8 +38,8 @@ const Day = ({dayNumber, workouts, conditionalMargin}: DayProps) => {
     )
 }
 
-const Schedule = () => {
-    const { AIData } = useContext(AIDataContext);
+const ExerciseSchedule = () => {
+    const { AIData } = useContext(ExerciseDataContext);
 
     if (AIData === undefined || Object.keys(AIData).length === 0) {
         return;
@@ -101,4 +76,4 @@ const Schedule = () => {
     );
 };
 
-export default Schedule;
+export default ExerciseSchedule;

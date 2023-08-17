@@ -3,8 +3,9 @@ import { useSchedule } from '@/hooks/useSchedule';
 
 import TypeIt from 'typeit-react';
 
-import Schedule from '@/components/Schedule';
-import AIDataContext from '@/utils/AIDataContext';
+import MealForm from '@/components/meal/MealForm';
+import MealSchedule from '@/components/meal/MealSchedule';
+import { MealDataContext } from '@/utils/AIDataContext';
 
 import { IMealList } from '@/types/common';
 import { anton } from '@/utils/fonts';
@@ -31,13 +32,13 @@ const MealPlanner = () => {
                 </div>
             </div>
 
-            <AIDataContext.Provider value={{ AIData, setAIData }}>
-                <WorkoutForm triggerScroll={triggerScroll} />
+            <MealDataContext.Provider value={{ AIData, setAIData }}>
+                <MealForm triggerScroll={triggerScroll} />
 
                 <div ref={scheduleRef}>
-                    <Schedule />
+                    <MealSchedule />
                 </div>
-            </AIDataContext.Provider>
+            </MealDataContext.Provider>
         </>
     );
 }
