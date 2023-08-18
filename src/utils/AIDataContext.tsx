@@ -1,15 +1,25 @@
 import { createContext } from 'react';
 
-import { IExerciseList } from '@/types/common'
+import { IExerciseList, IMealList } from '@/types/common'
 
-interface IAIDataContext {
+interface IExerciseDataContext {
     AIData: IExerciseList | undefined;
     setAIData: (AIData: IExerciseList) => void;
-    }
+}
 
-const AIDataContext = createContext<IAIDataContext>({
+const ExerciseDataContext = createContext<IExerciseDataContext>({
     AIData: {},
     setAIData: () => {},
 });
 
-export default AIDataContext;
+interface IMealDataContext {
+    AIData: IMealList | undefined;
+    setAIData: (AIData: IMealList) => void;
+}
+
+const MealDataContext = createContext<IMealDataContext>({
+    AIData: {},
+    setAIData: () => {},
+});
+
+export { ExerciseDataContext, MealDataContext };

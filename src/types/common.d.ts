@@ -9,7 +9,19 @@ export interface IWorkout {
     duration: number;
     rest: number;
 }
-  
+
 export interface IExerciseList {
-  [dayNumber: string]: IWorkout[];
+    [dayNumber: string]: IWorkout[];
+}
+
+export interface IMeal {
+    name: string;
+    calories: number;
+    protein: number;
+    carbs: number;
+    fat: number;
+}
+
+export interface IMealList {
+    [dayNumber: string]: IMeal[];
 }

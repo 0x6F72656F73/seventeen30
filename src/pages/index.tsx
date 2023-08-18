@@ -1,27 +1,19 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
+import { useSchedule } from '@/hooks/useSchedule';
 import Image from 'next/image'
 
 import TypeIt from "typeit-react";
 
-
-import WorkoutForm from '@/components/WorkoutForm'
-import Schedule from '@/components/Schedule'
-import AIDataContext from '@/utils/AIDataContext';
+import WorkoutForm from '@/components/exercise/WorkoutForm'
+import ExerciseSchedule from '@/components/exercise/ExerciseSchedule'
+import { ExerciseDataContext } from '@/utils/AIDataContext';
 
 import { IExerciseList } from '@/types/common'
 import { anton } from '@/utils/fonts';
 
 export default function Home() {
   const [AIData, setAIData] = useState<IExerciseList>();
-  const scheduleRef = useRef<HTMLDivElement>(null);
-
-  const triggerScroll = () => {
-    setTimeout(() => {
-      if (scheduleRef.current) {
-      scheduleRef.current.scrollIntoView({ behavior: 'smooth' });
-      }
-    }, 1);
-  };
+  const {scheduleRef, triggerScroll} = useSchedule();
 
   return (
     <main>
@@ -47,13 +39,13 @@ export default function Home() {
         </div>
       </div>
 
-      <AIDataContext.Provider value={{ AIData, setAIData }}>
+      <ExerciseDataContext.Provider value={{ AIData, setAIData }}>
         <WorkoutForm triggerScroll={triggerScroll} />
 
         <div ref={scheduleRef}>
-          <Schedule />
+          <ExerciseSchedule />
         </div>
-      </AIDataContext.Provider>
+      </ExerciseDataContext.Provider>
 
     </main>
   )
