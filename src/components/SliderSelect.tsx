@@ -21,6 +21,25 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
     onValueChange(title, value);
   };
 
+  let display: string;
+
+  switch (title) {
+    case "HEIGHT":
+      display = HeightConverter(selectedValue);
+      break;
+
+    case "WEIGHT":
+      display = WeightConverter(selectedValue);
+      break;
+
+    case "EXERCISE":
+      display = selectedValue;
+      break;
+
+    default:
+      display = 'Error';
+  }
+
   return (
     <div className='text-center text-white font-bold mb-48'>
       <div className={`flex items-center justify-center rounded-[4rem] w-[42rem] h-[8rem] p-4 ${getColorClassNames(color)[1]} text-4xl`}>
@@ -38,7 +57,7 @@ const SliderSelect = ({ title, color, min, max, onValueChange }: SliderSelectPro
 
         <div className="flex justify-center">
           <div className="w-30 mt-5 px-5 py-2 border-4 text-center text-4xl font-black">
-            {title === "HEIGHT" ? HeightConverter(selectedValue) : WeightConverter(selectedValue)}
+            {display}
           </div>
         </div>
       </div>

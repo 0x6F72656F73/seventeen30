@@ -10,7 +10,7 @@ interface IMealProps extends IMeal {
   index: number;
 }
 
-const Meal = ({ name, calories, index }: IMealProps) => {
+const Meal = ({ name, calories, protein, carbs, fat, index }: IMealProps) => {
   let label = '';
   switch (index) {
     case 0:
@@ -33,10 +33,11 @@ const Meal = ({ name, calories, index }: IMealProps) => {
     <div className="text-center">
       <div>
         <h1 className="my-2 font-bold truncate text-2xl"> {label} </h1>
-        <h2>{name}</h2>
+        <h2 className="text-lg mb-1">{name}</h2>
         <h3>Calories: {calories}</h3>
-        {/* {reps !== 0 ? <h2 className="text-xl">Sets x Reps:{sets}x{reps}</h2> : <h2 className="text-xl">Sets x Time:{sets}x{duration}</h2>}
-            <h3>Rest time: {rest}s</h3> */}
+        <h4>Protein: {protein} g</h4>
+        <h4>Carbs: {carbs} g</h4>
+        <h4>Fat: {fat} g</h4>
       </div>
     </div>
   )
@@ -53,7 +54,7 @@ const Day = ({ dayNumber, meals, conditionalMargin }: DayProps) => {
     <div className={`border-4 border-bright-pink py-6 ${conditionalMargin} min-w-[25rem] text-center`}>
       <h1 className="text-5xl text-white mb-5">Day {parseInt(dayNumber) + 1}</h1>
       {meals && meals.length > 0 ? (meals.map((meal, index) => (
-        <Meal key={meal.name} name={meal.name} calories={meal.calories} index={index} />
+        <Meal key={meal.name} name={meal.name} calories={meal.calories} protein={meal.protein} carbs={meal.carbs} fat={meal.fat} index={index} />
       ))) : (
         <LoadingAnimation />
       )}

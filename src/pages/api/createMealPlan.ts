@@ -25,15 +25,22 @@ const handler = async (req: NextRequest) => {
       
       Input:
       1. Days: ${formData.span}
+      2. Goal: ${formData.goal}
+      3. Macro specifications: ${formData.macros}
+      4. Days exercising per week: ${formData.exercise}
+      5. Ingredients already on hand: ${formData.ingredients}
+      6. Dietary restrictions: ${formData.restrictions}
 
       Given these user inputs, design a meal plan that is carefully personalized, providing breakfast, lunch, and dinner for the given number of days.
-      Think deeply about how each meal you consider fits within the user's specifications, and only recommend the meals that fit the user's needs and sport the best.
-      Try to introduce variation between meals as much as possible while keeping meals healthy and nutritional.
+      Think deeply about how each meal you consider fits within the user's specifications, and only recommend the meals that fit the user's goal, activity level,
+      macro specifications, and dietary restrictions the best. Include meals that contain the ingredients already on hand specified by the user (if any),
+      but do not necessarily limit the output to meals containing those ingredients. Try to introduce variation between meals as much as possible while
+      keeping meals healthy, nutritional, and conforming with the given dietary restrictions.
       ONLY REPLY WITH THE LIST-FORMATTED MEAL PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.
       
       Generate a list-formatted output which has a total of ${formData.span} lists.
       Here is the type structure for one meal:
-      type $Meal = { "name": string, "calories": number }
+      type $Meal = { "name": string, "calories": number, "protein": number, "carbs": number, "fat": number }
       required constraint: name.length < 20
       
       Separate each list with a pipe and space on both sides. ONLY REPLY WITH THE LIST-FORMATTED MEAL PLAN AND NOTHING ELSE. NOT NOW NOR IN THE FUTURE FOR ANY REASON.

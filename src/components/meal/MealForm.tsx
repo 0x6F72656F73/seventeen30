@@ -2,6 +2,7 @@ import { useState, useContext, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
 import DropdownSelect from '@/components/DropdownSelect';
+import SliderSelect from '@/components/SliderSelect';
 import TextSelect from '@/components/TextSelect';
 
 import retry from '@/utils/retry';
@@ -9,6 +10,16 @@ import parseStreamedJSON from '@/utils/parseStreamedJson';
 import { MealDataContext } from '@/utils/AIDataContext';
 import { libreBaskerville, anton } from '@/utils/fonts';
 
+const colorVariants = {
+  'bright-pink': ['#D90368', 'bg-bright-pink', 'border-bright-pink', 'from-bright-pink', 'text-bright-pink'],
+  'bright-green': ['#10E62C', 'bg-bright-green', 'border-bright-green', 'from-bright-green', 'text-bright-green'],
+  'bright-orange': ['#FF4D00', 'bg-bright-orange', 'border-bright-orange', 'from-bright-orange'],
+  'bright-blue': ['#5CE1E6', 'bg-bright-blue', 'border-bright-blue', 'from-bright-blue'],
+  'bright-yellow': ['#FFE347', 'bg-bright-yellow', 'border-bright-yellow', 'from-bright-yellow', '[&::-webkit-slider-runnable-track]:bg-bright-yellow'],
+  'bright-blue-2': ['#004AAD', 'bg-bright-blue-2', 'border-bright-blue-2', 'from-bright-blue-2', '[&::-webkit-slider-runnable-track]:bg-bright-blue-2'],
+  'bright-purple': ['#CB6CE6', 'bg-bright-purple', 'border-bright-purple', 'from-bright-purple'],
+  'bright-purple-2': ['#5E1474', 'bg-bright-purple-2', 'border-bright-purple-2', 'from-bright-purple-2']
+};
 
 interface MealFormProps {
   triggerScroll: () => void;
@@ -17,8 +28,11 @@ interface MealFormProps {
 const MealForm = ({ triggerScroll }: MealFormProps) => {
   const [formData, setFormData] = useState({
     span: '7 Day Plan',
-    level: 'Beginner',
-    goal: 'Weight Gain',
+    goal: 'Lose Weight',
+    macros: 'None',
+    exercise: '3',
+    ingredients: '',
+    restrictions: ''
     // height: ((HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['HEIGHT'][1]) / 2).toString(),
     // weight: ((HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][0] + HEIGHT_WEIGHT_MIN_MAX['WEIGHT'][1]) / 2).toString(),
     // sport: '',
@@ -43,6 +57,7 @@ const MealForm = ({ triggerScroll }: MealFormProps) => {
   const handleSubmit = async () => {
 
     try {
+      console.log(formData);
       const generateApiCall: () => Promise<Response> = async () => {
         return await fetch("/api/createMealPlan", {
           method: "POST",
@@ -107,22 +122,36 @@ const MealForm = ({ triggerScroll }: MealFormProps) => {
           onFieldValueChange={handleFieldValueChange}
         />
         <DropdownSelect
-          title="LEVEL"
+          title="GOAL"
           color="bright-blue"
-          fields={['Hide Macros', 'Show Macros']}
+          fields={['Lose Weight', 'Maintain Weight', 'Gain Weight']}
           onFieldValueChange={handleFieldValueChange}
         />
         <DropdownSelect
-          title="GOAL"
-          color="bright-orange"
-          fields={['Weight Gain', 'Weight Loss']}
+          title="MACROS"
+          color="bright-green"
+          fields={['None', 'High Protein', 'Low Carb', 'Low Fat']}
           onFieldValueChange={handleFieldValueChange}
+        />
+        <SliderSelect
+          title="EXERCISE"
+          color="bright-yellow"
+          min={'0'}
+          max={'7'}
+          onValueChange={handleFieldValueChange}
         />
       </div>
       <div className={`flex flex-col justify-center items-center mt-36 ${libreBaskerville.className}`}>
         <TextSelect
-          title="SPORT"
+          title="INGREDIENTS"
+          color="bright-orange"
+          placeholder='Enter any ingredients you have'
+          onValueChange={handleFieldValueChange}
+        />
+        <TextSelect
+          title="RESTRICTIONS"
           color="bright-purple"
+          placeholder='E.g. Vegetarian, gluten-free'
           onValueChange={handleFieldValueChange}
         />
       </div>
