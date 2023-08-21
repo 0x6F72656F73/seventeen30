@@ -99,6 +99,7 @@ const Header = () => {
                         <div className="flex flex-col gap-y-[2vh] w-[5rem] text-center items-center">
                             <Link href="/FAQs" className='hover:text-bright-green-300'>FAQs</Link> 
                             <Link href="/resource-library" className='hover:text-bright-green-300'>RESOURCE LIBRARY</Link>
+                            <Link href="/register" className='hover:text-bright-green-300'>REGISTER</Link> 
                         </div>
                     </motion.div>
                 </motion.div>
@@ -144,6 +145,7 @@ const Header = () => {
                             <Link href="/about" className={router.pathname === '/about' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>ABOUT US</Link>
                             <Link href="/FAQs" className={router.pathname === '/FAQs' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>FAQs</Link> 
                             <Link href="/resource-library" className={router.pathname === '/resource-library' ? 'text-bright-pink' : 'hover:text-bright-green-300'}>RESOURCE LIBRARY</Link>
+                            <Link href="/register" className='hover:text-bright-green-300'>REGISTER</Link> 
                         </div>
                     </motion.div>
                 </motion.div>

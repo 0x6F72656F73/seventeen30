@@ -1,15 +1,14 @@
 import { useState, useRef } from 'react'
-import Image from 'next/image'
 
 import TypeIt from "typeit-react";
 
-
 import WorkoutForm from '@/components/WorkoutForm'
 import Schedule from '@/components/Schedule'
-import AIDataContext from '@/utils/AIDataContext';
+import RegisterNow from "@/components/RegisterNow";
 
 import { IExerciseList } from '@/types/common'
 import { anton } from '@/utils/fonts';
+import AIDataContext from '@/utils/AIDataContext';
 
 export default function Home() {
   const [AIData, setAIData] = useState<IExerciseList>();
@@ -26,7 +25,6 @@ export default function Home() {
   return (
     <main>
       <div className="flex flex-col items-center justify-center mt-20 sm:min-h-screen">
-        {/* <Image src="images/seventeen30.svg" alt="Hero" priority={true} width="250" height="0" className="h-auto" placeholder="blur" blurDataURL="images/seventeen30.svg"/> */}
 
         <div className='flex items-center justify-center w-full h-[8rem] bg-bright-pink py-5 mt-10'>
           <div className={`hollow-text-mobile text-center text-4xl sm:text-6xl ${anton.className}`}>
@@ -53,7 +51,11 @@ export default function Home() {
         <div ref={scheduleRef}>
           <Schedule />
         </div>
+
+        <RegisterNow />
       </AIDataContext.Provider>
+
+    
 
     </main>
   )
