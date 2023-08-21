@@ -3,12 +3,10 @@ import { Configuration, OpenAIApi } from "openai-edge";
 import { OpenAIStream, StreamingTextResponse } from 'ai';
 import { NextRequest } from 'next/server';
 
-
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
-
 
 const handler = async (req: NextRequest) => {
   const { formData } = await req.json();

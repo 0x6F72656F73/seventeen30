@@ -51,7 +51,7 @@ const Header = () => {
                     <Link href="/">MORE</Link>
                 </div>
             </div>
-            <div className="xs:hidden md:flex text-4xl flex-row justify-around">
+            <div className="xs:hidden md:flex flex-row justify-around text-4xl">
 
                 <div className='hover:text-bright-green-300'>
                     <Link href="/" >HOME</Link>

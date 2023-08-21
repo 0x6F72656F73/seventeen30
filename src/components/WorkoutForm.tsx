@@ -136,7 +136,7 @@ const TextSelect = ({ title, color, onValueChange }: TextSelectProps) => {
         {title}
       </div>
       <div>
-        <motion.input type='text' placeholder='Type sport here (optional)' className="bg-transparent rounded-[4rem] w-[42rem] h-[5rem] border-4 mt-8 text-4xl text-center"
+        <motion.input type='text' placeholder='Type sport here (optional)' className={`bg-transparent rounded-[4rem] w-[42rem] h-[5rem] border-4 ${getColorClassNames(color)[2]} mt-8 text-4xl text-center`}
           value={selectedValue} onChange={(event) => handleValueChange(event.target.value)}
           whileHover={{ scale: 1.2, transition: { duration: .5 } }}/>
       </div>
@@ -233,7 +233,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
 
   const [onError, setOnError] = useState(false);
 
-  const { setAIData, } = useContext(AIDataContext);
+  const { setAIData } = useContext(AIDataContext);
   const [days, setDays] = useState<any[]>([]);
 
   useEffect(() => {
@@ -241,7 +241,6 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
   }, [days, setAIData]);
 
   const handleSubmit = async () => {
-
     try {
       const generateApiCall: () => Promise<Response> = async () => {
         return await fetch("/api/createWorkout", {
@@ -299,7 +298,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
 
   return (
     <div className="flex flex-col mt-32">
-      <div className={`grid grid-cols-1 md:grid-cols-2 justify-items-center ${libreBaskerville.className}`}>
+      <div className={`grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 justify-items-center ${libreBaskerville.className}`}>
         <DropdownSelect
           title="SPAN"
           color="bright-pink"
@@ -340,12 +339,12 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
         />
       </div>
       <div className={`flex flex-col justify-center items-center mt-36 ${libreBaskerville.className}`}>
-      <TextSelect
-          title="SPORT"
-          color="bright-purple"
-          onValueChange={handleFieldValueChange}
-        />
-      </div>
+        <TextSelect
+            title="SPORT"
+            color="bright-purple"
+            onValueChange={handleFieldValueChange}
+          />
+        </div>
       <motion.button
             className={`flex items-center mt-64 mx-auto cursor-pointer mb-2 p-2`} //  ${getColorClassNames(color)[1]}
             onClick={() => handleSubmit()}
@@ -354,7 +353,7 @@ const WorkoutForm = ({triggerScroll}: WorkoutFormProps) => {
             <div className={`text-9xl hollow-text-3 text-center ${anton.className}`}> 
               DONE
             </div>
-          </motion.button>
+        </motion.button>
 
       {onError && <div className={`flex flex-col justify-center items-center mt-20 ${libreBaskerville.className} text-red-500`}>Rate limit reached. Retrying automatically, please wait...</div>}
     </div>
