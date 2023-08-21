@@ -9,3 +9,6 @@ export const WeightConverter = (stringLbs: string): string => {
     return `${stringLbs} lbs`;
 }
 
+export const checkValid = (obj: any): boolean => {
+    return Object.values(obj).every((val) => val !== undefined && val !== null && val !== "");
+}

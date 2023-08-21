@@ -1,13 +1,12 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { motion, Transition } from "framer-motion";
+import { useUser, useSupabaseClient } from '@supabase/auth-helpers-react'
 
 import AIDataContext from "@/utils/AIDataContext";
-
 import { IWorkout } from "@/types/common";
 import { anton } from "@/utils/fonts";
 
 const Workout = ({name, reps, sets, rest, duration}: IWorkout) => {
-
     return (
         <div className="text-center">
             <div>
@@ -64,14 +63,39 @@ const Day = ({dayNumber, workouts, conditionalMargin}: DayProps) => {
 }
 
 const Schedule = () => {
-    const { AIData } = useContext(AIDataContext);
+    const { AIData, setAIData } = useContext(AIDataContext);
+    const supabaseClient = useSupabaseClient()
+    const user = useUser()
+
+    useEffect(() => {
+        console.log('check');
+    const checkDB = async () => {
+        const { data, error } = await supabaseClient.from('workout_plans').select('*').eq('user_id', user?.id)
+        if (error) {
+            console.log(error)
+        } else {
+            if (data?.length > 0) {
+                setAIData(JSON.parse(data[0].exercises))
+            }
+        }
+    }
+    if (user) checkDB();
+    }, [user, setAIData, supabaseClient, user?.id])
 
     if (AIData === undefined || Object.keys(AIData).length === 0) {
         return;
     } 
 
+    const hasContent = Object(AIData)?.some((workout: any) => workout.length > 0);
+    if (hasContent) {
+        const func = async () => {
+            await supabaseClient.from('workout_plans').upsert({user_id: user?.id, exercises: JSON.stringify(AIData)}, {onConflict: 'user_id'})
+        }
+        func()
+    }
+
+
     return (
-        <div>
             <div className="flex flex-col items-center mt-44 text-center">
                 <div className={`hollow-text-2-mobile text-7xl md:text-9xl ${anton.className}`}>
                     WORKOUT PLAN
@@ -96,7 +120,6 @@ const Schedule = () => {
                         }
                     </div>
                 )}
-                </div>
             </div>
     );
 };
